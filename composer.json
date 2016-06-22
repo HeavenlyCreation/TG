@@ -1,4 +1,14 @@
 {
+	"authors": [
+        {
+            "name": "Wang Jbo",
+            "role": "Developer"
+        },
+        {
+            "name": "Qi Zhiliang",
+            "role": "Developer"
+        }
+    ],
 	"require":	{
 		"nikic/fast-route": "~1.0",
 		"symfony/serializer": "~3.1",
@@ -9,6 +19,13 @@
         "packagist": {
             "type": "composer",
             "url": "https://packagist.phpcomposer.com"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+        	"Tg\\": "vendor/tg/",
+            "App\\": "app/",
+            "Man\\": "man/"
         }
     }
 }
