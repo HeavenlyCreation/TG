@@ -142,7 +142,7 @@ class Validator implements iValidate
      *
      * Check if the given string is a valid email
      *
-     * @param String         $input
+     * @param Str         $input
      * @param ValidationInfo $info
      *
      * @return string
@@ -165,7 +165,7 @@ class Validator implements iValidate
      *
      * Check if the given string is a valid ip address
      *
-     * @param String         $input
+     * @param Str         $input
      * @param ValidationInfo $info
      *
      * @return string
@@ -185,7 +185,7 @@ class Validator implements iValidate
      *
      * Check if the given string is a valid url
      *
-     * @param String         $input
+     * @param Str         $input
      * @param ValidationInfo $info
      *
      * @return string
@@ -208,7 +208,7 @@ class Validator implements iValidate
      *
      * Check if the given string is a valid date in YYYY-MM-DD format
      *
-     * @param String         $input
+     * @param Str         $input
      * @param ValidationInfo $info
      *
      * @return string
@@ -237,7 +237,7 @@ class Validator implements iValidate
      *
      * Check if the given string is a valid date and time in YYY-MM-DD HH:MM:SS format
      *
-     * @param String         $input
+     * @param Str         $input
      * @param ValidationInfo $info
      *
      * @return string
@@ -265,7 +265,7 @@ class Validator implements iValidate
      *
      * Check if the given string is a valid time in HH:MM:SS format
      *
-     * @param String         $input
+     * @param Str         $input
      * @param ValidationInfo $info
      *
      * @return string
@@ -281,7 +281,7 @@ class Validator implements iValidate
      *
      * Check if the given string is a valid time in HH:MM:SS format
      *
-     * @param String         $input
+     * @param Str         $input
      * @param ValidationInfo $info
      *
      * @return string
@@ -303,7 +303,7 @@ class Validator implements iValidate
      *
      * Check if the given string is a valid time 12 hour format
      *
-     * @param String         $input
+     * @param Str         $input
      * @param ValidationInfo $info
      *
      * @return string
@@ -327,7 +327,7 @@ class Validator implements iValidate
      *
      * Check if the given value is a valid timestamp
      *
-     * @param String         $input
+     * @param Str         $input
      * @param ValidationInfo $info
      *
      * @return int
