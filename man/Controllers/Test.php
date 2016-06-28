@@ -1,7 +1,6 @@
 <?php
 namespace Man\Controllers;
 
-use Luracast\Restler\Format\HtmlFormat;
 
 class Test{
     function __construct()
@@ -11,15 +10,13 @@ class Test{
     public function aa($a){
 //        \Twig_Autoloader::register();
 
-        $loader = new \Twig_Loader_Filesystem('F:/GitHub/TG/Man/Views');
+        $loader = new \Twig_Loader_Filesystem(BASEDIR.'/Man/Views');//echo BASEDIR.'/Man/Views';
         $twig = new \Twig_Environment($loader, array(
-            'cache' => 'F:/GitHub/TG/Man/Cache',
+            // 'cache' => BASEDIR.'/Man/Cache',
+            'cache' => false,
         ));
 
-//        echo $twig->render('/Layouts/test.tg', array('the' => $a, 'go' => 'here'));
-//        $twig->display('/Layouts/test.tg', array('the' => $a, 'go' => 'here'));
-        HtmlFormat::$viewPath = 'F:/GitHub/TG/Man/Views';   //__DIR__ . '/views';
-        HtmlFormat::$template = 'twig';
-        HtmlFormat::$view = "/Layouts/test.tg";
+        // echo $twig->render('/Layouts/test.tg', array('the' => $a, 'go' => 'here'));
+        $twig->display('/Layouts/test.twig', array('the' => $a, 'go' => 'here'));
     }
 }
