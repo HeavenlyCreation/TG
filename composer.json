@@ -14,7 +14,9 @@
 		"symfony/serializer": "~3.1",
 		"illuminate/database": "~5.2",
 		"restler/framework": "~3.0",
-		"twig/twig": "~1.24"
+		"twig/twig": "~1.24",
+		"symfony/config": "~3.1",
+		"symfony/asset": "~3.1"
 	},
     "repositories": {
         "packagist": {
