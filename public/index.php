@@ -11,6 +11,11 @@ define("BASEDIR", __DIR__."../");
 
 
 use Luracast\Restler\Restler;
+use Luracast\Restler\Format\HtmlFormat;
+
+HtmlFormat::$viewPath = 'F:/GitHub/TG/Man/Views';   //__DIR__ . '/views';
+HtmlFormat::$template = 'twig';
+HtmlFormat::$view = "/Layouts/test.tg";
 
 $r = new Restler();
 $r->setSupportedFormats('JsonFormat', 'HtmlFormat');

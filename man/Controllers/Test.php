@@ -1,7 +1,6 @@
 <?php
 namespace Man\Controllers;
 
-use Luracast\Restler\Format\HtmlFormat;
 
 class Test{
     function __construct()
@@ -18,8 +17,5 @@ class Test{
 
 //        echo $twig->render('/Layouts/test.tg', array('the' => $a, 'go' => 'here'));
 //        $twig->display('/Layouts/test.tg', array('the' => $a, 'go' => 'here'));
-        HtmlFormat::$viewPath = 'F:/GitHub/TG/Man/Views';   //__DIR__ . '/views';
-        HtmlFormat::$template = 'twig';
-        HtmlFormat::$view = "/Layouts/test.tg";
     }
 }
