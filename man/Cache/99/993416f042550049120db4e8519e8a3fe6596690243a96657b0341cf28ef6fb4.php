@@ -1,7 +1,7 @@
 <?php
 
 /* /Layouts/test.tg */
-class __TwigTemplate_6585a9717b82648d3dcde59cb38aec474598ed5bfe1490c34ed5d5b4eb862600 extends Twig_Template
+class __TwigTemplate_bad4348f65e7452fb5c5a96b0488979bc23ad5b7648560717335d88e5ec4f54c extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
