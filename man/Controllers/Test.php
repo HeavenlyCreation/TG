@@ -16,12 +16,10 @@ class Test{
             'cache' => false,
         ));
 
-<<<<<<< HEAD
+
 //        echo $twig->render('/Layouts/test.tg', array('the' => $a, 'go' => 'here'));
 //        $twig->display('/Layouts/test.tg', array('the' => $a, 'go' => 'here'));
-=======
         // echo $twig->render('/Layouts/test.tg', array('the' => $a, 'go' => 'here'));
-        $twig->display('/Layouts/test.twig', array('the' => $a, 'go' => 'here'));
->>>>>>> origin/master
+        $twig->display('/Layouts/test.tg', array('the' => $a, 'go' => 'here'));
     }
 }
