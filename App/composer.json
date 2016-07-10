@@ -1,0 +1,20 @@
+{
+	"authors": [
+        {
+            "name": "Wang Jbo",
+            "role": "Developer"
+        },
+        {
+            "name": "Qi Zhiliang",
+            "role": "Developer"
+        }
+    ],
+	"require":	{
+	},
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}
