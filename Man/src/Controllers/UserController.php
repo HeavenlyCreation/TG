@@ -6,13 +6,23 @@
  * Time: 15:12
  */
 
-namespace Controllers;
+namespace Man\Controllers;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-class UserController
+class UserController extends BaseController
 {
-    public function GetInfo($param){
-        echo 'abc+'.$param;
+    public function indexAction(Request $request){
+//        return new Response('Yep');
+        echo $this->tpl->render('Layout/layout.twig', array('the' => 'variables', 'go' => 'here'));
     }
 
+    public function GetInfo($id){
+        echo 'abc+'.$id;
+    }
+    
+    public function GetInfos(){
+        echo "Allaa";
+    }
 }

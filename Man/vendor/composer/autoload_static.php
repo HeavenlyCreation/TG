@@ -27,6 +27,10 @@ class ComposerStaticInit632cee41fe2bd66bc57c01831f35624d
             'Symfony\\Component\\Config\\' => 25,
             'Symfony\\Component\\Asset\\' => 24,
         ),
+        'M' => 
+        array (
+            'Man\\' => 4,
+        ),
         'I' => 
         array (
             'Illuminate\\Support\\' => 19,
@@ -40,6 +44,7 @@ class ComposerStaticInit632cee41fe2bd66bc57c01831f35624d
         ),
         'C' => 
         array (
+            'Core\\' => 5,
             'Carbon\\' => 7,
         ),
     );
@@ -85,6 +90,10 @@ class ComposerStaticInit632cee41fe2bd66bc57c01831f35624d
         array (
             0 => __DIR__ . '/..' . '/symfony/asset',
         ),
+        'Man\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
         'Illuminate\\Support\\' => 
         array (
             0 => __DIR__ . '/..' . '/illuminate/support',
@@ -105,6 +114,10 @@ class ComposerStaticInit632cee41fe2bd66bc57c01831f35624d
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
         ),
+        'Core\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/core',
+        ),
         'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
@@ -112,13 +125,6 @@ class ComposerStaticInit632cee41fe2bd66bc57c01831f35624d
     );
 
     public static $prefixesPsr0 = array (
-        'V' => 
-        array (
-            'Views' => 
-            array (
-                0 => __DIR__ . '/../..' . '/src',
-            ),
-        ),
         'T' => 
         array (
             'Twig_' => 
@@ -133,25 +139,11 @@ class ComposerStaticInit632cee41fe2bd66bc57c01831f35624d
                 0 => __DIR__ . '/..' . '/psr/log',
             ),
         ),
-        'M' => 
-        array (
-            'Models' => 
-            array (
-                0 => __DIR__ . '/../..' . '/src',
-            ),
-        ),
         'D' => 
         array (
             'Doctrine\\Common\\Inflector\\' => 
             array (
                 0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
-            ),
-        ),
-        'C' => 
-        array (
-            'Controllers' => 
-            array (
-                0 => __DIR__ . '/../..' . '/src',
             ),
         ),
     );

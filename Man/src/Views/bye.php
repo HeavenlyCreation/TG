@@ -1,6 +1,3 @@
-<?php
 
-//require_once __DIR__.'/../boot/init.php';
 
-$response->setContent('Goodbye!');
-//$response->send();
+Hello <?php echo htmlspecialchars($id, ENT_QUOTES, 'UTF-8') ?>

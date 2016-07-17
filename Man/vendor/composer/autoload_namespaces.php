@@ -6,10 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Views' => array($baseDir . '/src'),
     'Twig_' => array($vendorDir . '/twig/twig/lib'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
-    'Models' => array($baseDir . '/src'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),
-    'Controllers' => array($baseDir . '/src'),
 );
