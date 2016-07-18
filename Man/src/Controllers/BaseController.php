@@ -19,9 +19,9 @@ class BaseController
     public function __construct()
     {
         // twig 模板引擎设置
-        $loader = new \Twig_Loader_Filesystem(__DIR__.'/../Views');
+        $loader = new \Twig_Loader_Filesystem(BASEDIR.'/src/Views');
         $this->tpl = new \Twig_Environment($loader, array(
-            'cache' => BASEDIR.'/storage/tplcache',
+            'cache' => BASEDIR.'/storage/viewcache',
         ));
     }
 

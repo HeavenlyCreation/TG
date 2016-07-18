@@ -32,11 +32,12 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 // config文件加载
+$config = require BASEDIR.'/config/config.php';
 
 
 // Eloquent ORM 数据库配置装载
 $capsule = new Capsule;
-$capsule->addConnection(require BASEDIR.'/config/database.php');
+$capsule->addConnection($config['database']['connections']['mysql']);
 $capsule->bootEloquent();
 
 

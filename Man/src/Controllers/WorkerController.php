@@ -19,6 +19,6 @@ class WorkerController extends BaseController
     public function index()
     {
         $worker = MWorker::all();
-        return $this->tpl->render('User.index', ['the' => $worker]);
+        return $this->tpl->render('User/Index.twig', ['the' => $worker]);
     }
 }
