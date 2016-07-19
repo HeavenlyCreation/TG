@@ -23,7 +23,7 @@
     "autoload":{
         "psr-4":{
             "Man\\": "src",
-            "Core\\": "core"
+            "Lib\\": "lib"
         }
     },
     "repositories": {

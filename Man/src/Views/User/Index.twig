@@ -5,9 +5,9 @@
 </head>
 <body>
 <ul id="navigation">
-    {#{% for item in navigation %}#}
-        {#<li><a href="{{ item.href }}">{{ item.caption }}</a></li>#}
-    {#{% endfor %}#}
+    {% for item in the %}
+        {{ item.JobNumber }}+{{ item.Sex }}
+    {% endfor %}
 </ul>
 {{ go }}
 <h1>My Webpage</h1>

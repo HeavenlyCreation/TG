@@ -15,14 +15,14 @@ class UserController extends BaseController
 {
     public function indexAction(Request $request){
 //        return new Response('Yep');
-        echo $this->tpl->render('Layout/layout.twig', array('the' => 'variables', 'go' => 'here'));
+        return $this->tpl->render('Layout/layout.twig', array('the' => 'variables', 'go' => 'here'));
     }
 
     public function GetInfo($id){
-        echo 'abc+'.$id;
+        return 'abc+'.$id;
     }
     
     public function GetInfos(){
-        echo "Allaa";
+        return "Allaa";
     }
 }

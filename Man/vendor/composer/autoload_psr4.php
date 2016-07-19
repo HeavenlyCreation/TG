@@ -17,11 +17,11 @@ return array(
     'Symfony\\Component\\Config\\' => array($vendorDir . '/symfony/config'),
     'Symfony\\Component\\Asset\\' => array($vendorDir . '/symfony/asset'),
     'Man\\' => array($baseDir . '/src'),
+    'Lib\\' => array($baseDir . '/lib'),
     'Illuminate\\Support\\' => array($vendorDir . '/illuminate/support'),
     'Illuminate\\Database\\' => array($vendorDir . '/illuminate/database'),
     'Illuminate\\Contracts\\' => array($vendorDir . '/illuminate/contracts'),
     'Illuminate\\Container\\' => array($vendorDir . '/illuminate/container'),
     'FastRoute\\' => array($vendorDir . '/nikic/fast-route/src'),
-    'Core\\' => array($baseDir . '/core'),
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
 );

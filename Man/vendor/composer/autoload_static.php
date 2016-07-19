@@ -31,6 +31,10 @@ class ComposerStaticInit632cee41fe2bd66bc57c01831f35624d
         array (
             'Man\\' => 4,
         ),
+        'L' => 
+        array (
+            'Lib\\' => 4,
+        ),
         'I' => 
         array (
             'Illuminate\\Support\\' => 19,
@@ -44,7 +48,6 @@ class ComposerStaticInit632cee41fe2bd66bc57c01831f35624d
         ),
         'C' => 
         array (
-            'Core\\' => 5,
             'Carbon\\' => 7,
         ),
     );
@@ -94,6 +97,10 @@ class ComposerStaticInit632cee41fe2bd66bc57c01831f35624d
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
+        'Lib\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/lib',
+        ),
         'Illuminate\\Support\\' => 
         array (
             0 => __DIR__ . '/..' . '/illuminate/support',
@@ -113,10 +120,6 @@ class ComposerStaticInit632cee41fe2bd66bc57c01831f35624d
         'FastRoute\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
-        ),
-        'Core\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/core',
         ),
         'Carbon\\' => 
         array (

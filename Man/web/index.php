@@ -26,7 +26,7 @@ define("BASEDIR", realpath(__DIR__.'/../'));
 define("ROOTDIR", realpath(__DIR__));
 
 use Symfony\Component\HttpFoundation\Request;
-//use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Illuminate\Database\Capsule\Manager as Capsule;
@@ -56,7 +56,7 @@ $dispatcher->addListener('response', function(Core\ResponseEvent $event){
     $response->setContent($response->getContent().'GA CODE');
 });
 
-$appCore = new \Core\AppCore($controllerResolver, $argumentResolver, $dispatcher);
+$appCore = new \Lib\Core\AppCore($controllerResolver, $argumentResolver, $dispatcher);
 $response = $appCore->handle($request);
 
-//$response->send();
+$response->send();

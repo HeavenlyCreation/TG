@@ -6,7 +6,7 @@
  * Time: 11:00
  */
 
-namespace Core;
+namespace Lib\Core;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +31,7 @@ class AppCore
     public function handle(Request $request)
     {
         $frDispatcher = \FastRoute\simpleDispatcher(function(RouteCollector $routes) {
-            include __DIR__.'/../src/route.php';
+            include BASEDIR.'/src/route.php';
         });
 
         // Fetch method and URI from somewhere
@@ -40,16 +40,21 @@ class AppCore
 
         $routeInfo = $frDispatcher->dispatch($httpMethod, $uri);
 
+        $response = new Response();
         try{
             switch ($routeInfo[0]) {
                 case \FastRoute\Dispatcher::NOT_FOUND:
                     // ... 404 Not Found
-                    $response = new Response('Not Found', 404);
+//                    $response = new Response('Not Found', 404);
+                    $response->sendContent('Not Found');
+                    $response->setStatusCode(Response::HTTP_NOT_FOUND);
                     break;
                 case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
                     // $allowedMethods = $routeInfo[1];
                     // ... 405 Method Not Allowed
-                    $response = new Response('Method Not Allowed', 405);
+//                    $response = new Response('Method Not Allowed', 405);
+                    $response->sendContent('Method Not Allowed');
+                    $response->setStatusCode(Response::HTTP_METHOD_NOT_ALLOWED);
                     break;
                 case \FastRoute\Dispatcher::FOUND:
                     $handler = $routeInfo[1];
@@ -59,11 +64,15 @@ class AppCore
                     $request->attributes->add($vars);
                     $controller = $this->controllerResolver->getController($request);
                     $arguments = $this->argumentResolver->getArguments($request, $controller);
-                    $response = call_user_func_array($controller, $arguments);
+                    $backContent = call_user_func_array($controller, $arguments);
+                    $response->setContent($backContent);
+                    $response->setStatusCode(Response::HTTP_OK);
                     break;
             }
         }catch(Exception $e){
-            $response = new Response('Nope, an error occurred', 500);
+//            $response = new Response('Nope, an error occurred', 500);
+            $response->sendContent('Nope, an error occurred');
+            $response->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
 //        $this->dispatcher->dispatch('response', new ResponseEvent($response, $request));
