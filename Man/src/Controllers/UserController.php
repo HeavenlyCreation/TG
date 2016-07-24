@@ -15,7 +15,7 @@ class UserController extends BaseController
 {
     public function indexAction(Request $request){
 //        return new Response('Yep');
-        return $this->tpl->render('Layout/layout.twig', array('the' => 'variables', 'go' => 'here'));
+        return $this->tpl->render('Layout/Main.twig', array('the' => 'variables', 'go' => 'here'));
     }
 
     public function GetInfo($id){

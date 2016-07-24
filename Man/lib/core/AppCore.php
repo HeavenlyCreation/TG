@@ -14,6 +14,7 @@ use Symfony\Component\HttpKernel\Controller\ArgumentResolverInterface;
 use Symfony\Component\HttpKernel\Controller\ControllerResolverInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use FastRoute\RouteCollector;
+//use \Lib\Route\Route;
 
 class AppCore
 {
@@ -31,6 +32,7 @@ class AppCore
     public function handle(Request $request)
     {
         $frDispatcher = \FastRoute\simpleDispatcher(function(RouteCollector $routes) {
+//            Route::setRoutes($routes);
             include BASEDIR.'/src/route.php';
         });
 

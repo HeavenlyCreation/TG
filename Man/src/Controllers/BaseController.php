@@ -16,13 +16,16 @@ class BaseController
     public $tpl;
     public $assets;
 
-    public function __construct()
-    {
+    public function __construct(){
         // twig 模板引擎设置
         $loader = new \Twig_Loader_Filesystem(BASEDIR.'/src/Views');
         $this->tpl = new \Twig_Environment($loader, array(
-            'cache' => BASEDIR.'/storage/viewcache',
+//            'cache' => BASEDIR.'/storage/viewcache',
         ));
+    }
+    
+    public function View($file, $var){
+        return $this->tpl->render($file, $var);
     }
 
 }

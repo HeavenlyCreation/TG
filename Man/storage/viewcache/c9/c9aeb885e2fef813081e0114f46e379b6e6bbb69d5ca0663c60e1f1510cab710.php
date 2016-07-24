@@ -1,6 +1,6 @@
 <?php
 
-/* Layout/layout.twig */
+/* Layout/Main.twig */
 class __TwigTemplate_7f6575787e6dbcea74cbc888003080fce14af2599724e8bdf9633ec0e6bb2513 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
@@ -423,7 +423,7 @@ desired effect
 
     public function getTemplateName()
     {
-        return "Layout/layout.twig";
+        return "Layout/Main.twig";
     }
 
     public function getDebugInfo()
