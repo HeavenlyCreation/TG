@@ -13,7 +13,9 @@ use Symfony\Component\Asset\PathPackage;
 
 class BaseController
 {
+    // twig 实例
     public $tpl;
+    //
     public $assets;
 
     public function __construct(){

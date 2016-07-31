@@ -18,7 +18,6 @@ class ComposerStaticInit632cee41fe2bd66bc57c01831f35624d
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Translation\\' => 30,
-            'Symfony\\Component\\Serializer\\' => 29,
             'Symfony\\Component\\HttpKernel\\' => 29,
             'Symfony\\Component\\HttpFoundation\\' => 33,
             'Symfony\\Component\\Filesystem\\' => 29,
@@ -60,10 +59,6 @@ class ComposerStaticInit632cee41fe2bd66bc57c01831f35624d
         'Symfony\\Component\\Translation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
-        ),
-        'Symfony\\Component\\Serializer\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/serializer',
         ),
         'Symfony\\Component\\HttpKernel\\' => 
         array (

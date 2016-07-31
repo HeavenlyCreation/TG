@@ -11,7 +11,7 @@
 
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
-    <link href="/assets/css/contact.css" rel="stylesheet" />
+    {#<link href="/assets/css/contact.css" rel="stylesheet" />#}
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -285,7 +285,7 @@ desired effect
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                {{PageHeader }}
+                {{ PageHeader }}
                 <small>{{  PageDesc }}</small>
             </h1>
             {#<ol class="breadcrumb">#}
@@ -405,5 +405,8 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
      fixed layout. -->
+
+{% block footer %}{% endblock %}
+
 </body>
 </html>

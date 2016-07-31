@@ -15,6 +15,9 @@
 $routes->addRoute('GET', '/login', '\Man\Controllers\LoginController@index');
 // 后台首页
 $routes->addRoute('GET', '/home', '\Man\Controllers\HomeController@index');
+// 订单列表
+$routes->addRoute('GET', '/order', '\Man\Controllers\OrderController@index');
+$routes->addRoute('POST', '/order', '\Man\Controllers\OrderController@index2');
 
 
 //$routes->addRoute('GET', '/user', '\Man\Controllers\UserController@indexAction');
