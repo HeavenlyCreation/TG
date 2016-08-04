@@ -11,6 +11,7 @@ namespace Man\Controllers;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Fluent;
+use Illuminate\Database\Capsule\Manager as DB;
 
 use Man\Models\EOrder;
 
@@ -22,12 +23,18 @@ class OrderController extends BaseController
     }
 
     public function Index2(Request $request){
-        $orders = EOrder::all()->toArray();
+        $search = $request->get("search")["value"];
+        if(!empty($search)){
+            $orders = DB::select("select * from eorder where CONCAT(OrderID,OrderNum,COMMITtime) like '%?%'", [$search]);
+        }else{
+            $orders = EOrder::all();
+        }
+//        $orders = DB::select("select * from eorder where CONCAT(OrderID,OrderNum,COMMITtime) like '%".$request->get("search")."%'");//->toArray();
         $c = new Fluent([
             "draw" => intval($request->get("draw")),
             "recordsTotal" => intval(2),
             "recordsFiltered" => intval(3),
-            "data" => $orders
+            "data" => $orders->toArray()
         ]);
         $aa = $c->toJson();
         return $aa;

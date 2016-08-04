@@ -8,8 +8,9 @@
 
 namespace Man\Controllers;
 
-
 use Symfony\Component\Asset\PathPackage;
+use Illuminate\Database\Capsule\Manager as DB;
+
 
 class BaseController
 {
@@ -24,6 +25,7 @@ class BaseController
         $this->tpl = new \Twig_Environment($loader, array(
 //            'cache' => BASEDIR.'/storage/viewcache',
         ));
+        
     }
     
     public function View($file, $var){
