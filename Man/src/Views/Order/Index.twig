@@ -9,28 +9,30 @@
     <div class="row">
         <div class="col-xs-12">
           <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
-            </div>
+            {#<div class="box-header">#}
+              {#<h3 class="box-title">Data Table With Full Features</h3>#}
+            {#</div>#}
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
+                  <th>ID</th>
+                  <th>订单编号</th>
+                  <th>顾客</th>
+                  <th>总价</th>
+                  <th>预定时间</th>
+                  <th>订单状态</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
+                    <th>ID</th>
+                    <th>订单编号</th>
+                    <th>顾客</th>
+                    <th>总价</th>
+                    <th>预定时间</th>
+                    <th>订单状态</th>
                 </tr>
                 </tfoot>
               </table>
@@ -52,19 +54,51 @@
     <script>
     $(function () {
         $('#example1').DataTable({
-          "processing": true,
-          "serverSide": true,
-          "ajax": {
-            "url": "/order",
-            "type": "POST"
-          },
-          "columns": [
-            { "data": "OrderID" },
-            { "data": "OrderNum" },
-            { "data": "CustomerID" },
-            { "data": "SumPrice" },
-            { "data": "BookFitTime" }
-          ]
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "/order",
+                "type": "POST"
+            },
+            "columns": [
+                { "data": "OrderID" },
+                { "data": "OrderNum" },
+                { "data": "CustomerID" },
+                { "data": "SumPrice" },
+                { "data": "BookFitTime" },
+                { "data": "OrderStatus" }
+            ],
+            "columnDefs": [
+                {
+                    "targets": 0,
+                    "visible": false,
+                    "searchable": false
+                }
+            ],
+            language: {
+                "sProcessing": "处理中...",
+                "sLengthMenu": "显示 _MENU_ 项结果",
+                "sZeroRecords": "没有匹配结果",
+                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "搜索:",
+                "sUrl": "",
+                "sEmptyTable": "表中数据为空",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands": ",",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上页",
+                    "sNext": "下页",
+                    "sLast": "末页"
+                },
+                "oAria": {
+                    "sSortAscending": ": 以升序排列此列",
+                    "sSortDescending": ": 以降序排列此列"
+                }
+            }
         });
     });
     </script>
