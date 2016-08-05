@@ -16,4 +16,12 @@ class EOrder extends Model
     protected $table = 'eorder';
 
     protected $primaryKey = 'MWID';
+
+    /**
+     * 获取订单发布者
+     */
+    public function customer()
+    {
+        return $this->belongsTo('Man\Models\MCustomer')->getRelated()->belongsTo("Man\Models\MUser");
+    }
 }

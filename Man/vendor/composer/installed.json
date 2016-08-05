@@ -1073,5 +1073,52 @@
         ],
         "description": "Symfony Translation Component",
         "homepage": "https://symfony.com"
+    },
+    {
+        "name": "illuminate/events",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/events.git",
+            "reference": "5a5e5d72bf3a2d01d8b15e89440026a60bc4a81b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://packagist.phpcomposer.com/files/illuminate/events/5a5e5d72bf3a2d01d8b15e89440026a60bc4a81b.zip",
+            "reference": "5a5e5d72bf3a2d01d8b15e89440026a60bc4a81b",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/container": "5.2.*",
+            "illuminate/contracts": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "php": ">=5.5.9"
+        },
+        "time": "2016-01-01 01:00:19",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Events\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Events package.",
+        "homepage": "http://laravel.com"
     }
 ]

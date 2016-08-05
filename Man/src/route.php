@@ -15,9 +15,13 @@
 $routes->addRoute('GET', '/login', '\Man\Controllers\LoginController@index');
 // 后台首页
 $routes->addRoute('GET', '/home', '\Man\Controllers\HomeController@index');
+// 工人列表
+$routes->addRoute('GET', '/workers', '\Man\Controllers\workerController@index');
+$routes->addRoute('POST', '/workers', '\Man\Controllers\workerController@index2');
 // 订单列表
-$routes->addRoute('GET', '/order', '\Man\Controllers\OrderController@index');
-$routes->addRoute('POST', '/order', '\Man\Controllers\OrderController@index2');
+$routes->addRoute('GET', '/orders', '\Man\Controllers\OrderController@index');
+$routes->addRoute('POST', '/orders', '\Man\Controllers\OrderController@index2');
+$routes->addRoute('GET', '/detail/{orderID:\d+}', '\Man\Controllers\OrderController@Detail');
 
 
 //$routes->addRoute('GET', '/user', '\Man\Controllers\UserController@indexAction');

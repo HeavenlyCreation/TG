@@ -9,8 +9,6 @@
 namespace Man\Controllers;
 
 use Symfony\Component\Asset\PathPackage;
-use Illuminate\Database\Capsule\Manager as DB;
-
 
 class BaseController
 {

@@ -19,24 +19,31 @@ use Man\Models\EOrder;
 class OrderController extends BaseController
 {
     public function Index(){
-        return $this->tpl->render('Order/Index.twig');
+        return $this->tpl->render('Order/Index.twig', ["PageHeader"=>"订单信息列表", "Act"=>"order"]);
     }
 
     public function Index2(Request $request){
         $search = $request->get("search")["value"];
         if(!empty($search)){
-            $orders = DB::select("select * from eorder where CONCAT(OrderID,OrderNum,COMMITtime) like '%?%'", [$search]);
+            //用DB处理原生SQL
+            //$orders = DB::connection()->select("select * from eorder where CONCAT(OrderID,OrderNum,COMMITtime) like ?", ["%".$search."%"]);
+            //用模型处理原生SQL
+            $orders = EOrder::hydrateRaw("select * from eorder where CONCAT(OrderID,OrderNum,COMMITtime) like ?", ["%".$search."%"])->toArray();
         }else{
-            $orders = EOrder::all();
+            $orders = EOrder::all()->toArray();
         }
-//        $orders = DB::select("select * from eorder where CONCAT(OrderID,OrderNum,COMMITtime) like '%".$request->get("search")."%'");//->toArray();
         $c = new Fluent([
             "draw" => intval($request->get("draw")),
-            "recordsTotal" => intval(2),
-            "recordsFiltered" => intval(3),
-            "data" => $orders->toArray()
+            "recordsTotal" => intval(EOrder::all()->count()),
+            "recordsFiltered" => intval(count($orders)),
+            "data" => $orders
         ]);
         $aa = $c->toJson();
         return $aa;
+    }
+
+    public function Detail($orderID){
+        $order = EOrder::where("OrderID", $orderID)->first();
+        return $this->tpl->render('Order/Detail.twig', ["PageHeader"=>"订单详细信息", "Act"=>"order", "Order"=>$order]);
     }
 }
