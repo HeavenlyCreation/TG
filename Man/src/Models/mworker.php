@@ -15,5 +15,5 @@ class MWorker extends Model
 {
     protected $table = 'mworker';
 
-    protected $primaryKey = 'MWID';
+    protected $primaryKey = 'WorkerID';
 }

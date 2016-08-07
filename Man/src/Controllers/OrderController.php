@@ -26,20 +26,23 @@ class OrderController extends BaseController
         $search = $request->get("search")["value"];
         if(!empty($search)){
             //用DB处理原生SQL
-            //$orders = DB::connection()->select("select * from eorder where CONCAT(OrderID,OrderNum,COMMITtime) like ?", ["%".$search."%"]);
+            //$orders = DB::connection()->select("select * from eorder where CONCAT_WS(',',OrderID,OrderNum,COMMITtime) like ?", ["%".$search."%"]);
             //用模型处理原生SQL
-            $orders = EOrder::hydrateRaw("select * from eorder where CONCAT(OrderID,OrderNum,COMMITtime) like ?", ["%".$search."%"])->toArray();
+            $orders = EOrder::hydrateRaw("select * from eorder where CONCAT_WS(',',OrderID,OrderNum,CommitTime) like ?", ["%".$search."%"])->toArray();
         }else{
             $orders = EOrder::all()->toArray();
         }
-        $c = new Fluent([
+
+        // 序列化一个包含Array的自定义对象
+        $obj = new Fluent([
             "draw" => intval($request->get("draw")),
             "recordsTotal" => intval(EOrder::all()->count()),
             "recordsFiltered" => intval(count($orders)),
             "data" => $orders
         ]);
-        $aa = $c->toJson();
-        return $aa;
+        // 转换为Json
+        $listJson = $obj->toJson();
+        return $listJson;
     }
 
     public function Detail($orderID){

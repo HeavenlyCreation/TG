@@ -15,13 +15,13 @@ class EOrder extends Model
 {
     protected $table = 'eorder';
 
-    protected $primaryKey = 'MWID';
+    protected $primaryKey = 'OrderID';
 
     /**
      * 获取订单发布者
      */
-    public function customer()
+    public function Customer()
     {
-        return $this->belongsTo('Man\Models\MCustomer')->getRelated()->belongsTo("Man\Models\MUser");
+        return $this->belongsTo('Man\Models\MCustomer', 'CustomerID', 'CustomerID');
     }
 }

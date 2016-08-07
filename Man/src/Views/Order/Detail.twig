@@ -17,9 +17,9 @@
         <div class="form-horizontal">
             <div class="box-body">
                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">发布者</label>
+                        <label for="inputEmail3" class="col-sm-2 control-label">下单人</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="pusher" disabled value="{{ Order.Customer.NickName }}">
+                            <input type="text" class="form-control" id="pusher" disabled value="{{ Order.Customer.User.Nickname }}">
                         </div>
                     </div>
 

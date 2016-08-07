@@ -21,8 +21,10 @@ class BaseController
         // twig 模板引擎设置
         $loader = new \Twig_Loader_Filesystem(BASEDIR.'/src/Views');
         $this->tpl = new \Twig_Environment($loader, array(
+            'debug' => true,
 //            'cache' => BASEDIR.'/storage/viewcache',
         ));
+        $this->tpl->addExtension(new \Twig_Extension_Debug());
         
     }
     

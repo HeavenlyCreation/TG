@@ -16,4 +16,13 @@ class MCustomer extends Model
     protected $table = 'mcustomer';
 
     protected $primaryKey = 'CustomerID';
+
+    /**
+     * 返回用户信息
+     */
+    public function User()
+    {
+        $bb = $this->belongsTo('Man\Models\MUser', 'UserID', 'UserID');
+        return $bb;
+    }
 }
