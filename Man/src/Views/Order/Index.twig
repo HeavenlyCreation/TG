@@ -65,7 +65,7 @@
             "columns": [
                 { "data": "OrderID" },
                 { "data": "OrderNum" },
-                { "data": "customer" },
+                { "data": "Customer" },
                 { "data": "SumPrice" },
                 { "data": "CommitTime" },
                 { "data": "BookFitTime" },
@@ -76,6 +76,12 @@
                     "targets": 0,
                     "visible": false,
                     "searchable": false
+                },
+                {
+                    "targets": 1,
+                    "render": function(data, type, row){
+                        return "<a href='/detail/"+row.OrderID+"'>"+data+"</a>";
+                    }
                 }
             ],
             language: {

@@ -24,4 +24,20 @@ class EOrder extends Model
     {
         return $this->belongsTo('Man\Models\MCustomer', 'CustomerID', 'CustomerID');
     }
+
+    /**
+     * 获取订单产品
+     */
+    public function OrderProduct()
+    {
+        return $this->hasMany('Man\Models\EOrderProduct', 'OrderID', 'OrderID');
+    }
+
+    /**
+     * 获取订单产品
+     */
+//    public function Product()
+//    {
+//        return $this->hasManyThrough('Man\Models\MProduct', 'Man\Models\EOrderProduct', 'OrderID', 'OrderProductID');
+//    }
 }
