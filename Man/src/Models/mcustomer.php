@@ -22,7 +22,6 @@ class MCustomer extends Model
      */
     public function User()
     {
-        $bb = $this->belongsTo('Man\Models\MUser', 'UserID', 'UserID');
-        return $bb;
+        return $this->belongsTo('Man\Models\MUser', 'UserID', 'UserID');
     }
 }
