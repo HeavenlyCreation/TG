@@ -6,7 +6,7 @@
  * Time: 14:55
  */
 
-namespace Man\Models;
+namespace Man\Models\VM;
 
 
 class Paging {

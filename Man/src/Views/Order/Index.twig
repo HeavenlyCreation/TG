@@ -24,6 +24,7 @@
                   <th>下单时间</th>
                   <th>预定时间</th>
                   <th>订单状态</th>
+                  <th>操作</th>
                 </tr>
                 </thead>
                 <tfoot>
@@ -35,6 +36,7 @@
                     <th>下单时间</th>
                     <th>预定时间</th>
                     <th>订单状态</th>
+                    <th>操作</th>
                 </tr>
                 </tfoot>
               </table>
@@ -52,7 +54,6 @@
     <!-- DataTables -->
     <script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="/assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <script src="/assets/js/datatable.js"></script>
     <!-- page script -->
     <script>
     $(function () {
@@ -70,7 +71,8 @@
                 { "data": "SumPrice" },
                 { "data": "CommitTime" },
                 { "data": "BookFitTime" },
-                { "data": "OrderStatus" }
+                { "data": "OrderStatus" },
+                { "data": "" }
             ],
             columnDefs: [
                 {
@@ -79,9 +81,9 @@
                     "searchable": false
                 },
                 {
-                    "targets": 1,
+                    "targets": -1,
                     "render": function(data, type, row){
-                        return "<a href='/detail/"+row.OrderID+"'>"+data+"</a>";
+                        return "<a href='/detail/"+row.OrderID+"'><i class='fa fa-file-text-o'></i></a>";
                     }
                 }
             ],
