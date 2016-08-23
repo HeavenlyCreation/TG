@@ -23,8 +23,9 @@
 /** 系统常量定义 **/
 require __DIR__.'/../vendor/autoload.php';
 define('BASEDIR', realpath(__DIR__.'/../').DIRECTORY_SEPARATOR);    // 项目文件系统根目录
-define('ROOTDIR', realpath(__DIR__));           // URL根路径
-define('CONFDIR', BASEDIR.'lib'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR);
+define('ROOTDIR', realpath(__DIR__));                               // URL根路径
+define('LIBDIR', BASEDIR.'lib'.DIRECTORY_SEPARATOR);                // 框架库路径
+define('CONFDIR', LIBDIR.'config'.DIRECTORY_SEPARATOR);             // 配置文件夹路径
 
 /** 启动项目文件 **/
 use Symfony\Component\HttpFoundation\Request;
@@ -47,7 +48,6 @@ else
 
 // Eloquent ORM 数据库配置装载
 $capsule = new Capsule;
-//$capsule->addConnection($config['database']['connections']['mysql']);
 $capsule->addConnection(Config::get('database', 'connections.mysql'));
 $capsule->setEventDispatcher(new Dispatcher(new Container));
 $capsule->setAsGlobal();

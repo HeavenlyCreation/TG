@@ -10,5 +10,15 @@ namespace Lib\Core;
 
 
 class Log {
-
+    static $class;
+    
+    public static function init(){
+        $driver = Config::get('log', 'DRIVER');
+        $class = '\Lib\Log\\'.$driver;
+        self::$class = new $class;
+    }
+    
+    public static function log($msg, $name){
+        self::$class->log($msg, $name);
+    }
 }

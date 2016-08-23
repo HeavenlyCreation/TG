@@ -16,9 +16,9 @@ class Config{
         if(!is_dir(CONFDIR)){
             return null;
         }
-        if(self::get('app', 'BREAK')){
-            self::$conf['app'] = self::all('app');
-            self::$break = self::$conf['app']['BREAK'];
+        if(self::get('app', 'config.BREAK')){
+//            self::$conf['app'] = self::all('app');
+            self::$break = self::$conf['app']['config']['BREAK'];
         }
         self::$class = new Config();
         return self::$class;
@@ -39,7 +39,7 @@ class Config{
             $confTemp = self::forKeys($config, $key);
 
             if(isset($confTemp)){
-                self::$conf[$path] = $config;
+                self::$conf[$file] = $config;
                 return $confTemp;
             }else{
                 return null;
@@ -76,13 +76,13 @@ class Config{
      */
     private static function forKeys($ary, $str){
         $str = trim($str, self::$break);
-        $keys = explode(self::$break, $str);
-        $ay = $ary[$keys[0]];
         if(strpos($str, self::$break)!=false){
+            $keys = explode(self::$break, $str);
+            $ay = $ary[$keys[0]];
             $keys = substr($str, strlen($keys[0])+1, strlen($str));
             return self::forKeys($ay, $keys);
         }else{
-            return $ay;
+            return $ary[$str];
         }
     }
 }
