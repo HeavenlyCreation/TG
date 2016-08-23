@@ -8,7 +8,6 @@
 
 namespace Lib\Log;
 
-
 class Db
 {
 
