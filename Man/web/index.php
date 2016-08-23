@@ -20,11 +20,13 @@
 
 
 
-
+/** 系统常量定义 **/
 require __DIR__.'/../vendor/autoload.php';
-define("BASEDIR", realpath(__DIR__.'/../'));
-define("ROOTDIR", realpath(__DIR__));
+define('BASEDIR', realpath(__DIR__.'/../').DIRECTORY_SEPARATOR);    // 项目文件系统根目录
+define('ROOTDIR', realpath(__DIR__));           // URL根路径
+define('CONFDIR', BASEDIR.'lib'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR);
 
+/** 启动项目文件 **/
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel;
@@ -32,14 +34,21 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Container\Container;
+use Lib\Core\Config;
 
 // config文件加载
-$config = require BASEDIR.'/config/config.php';
+Config::init();
 
+/** 根据 DEBUG 判断是否显示错误信息 **/
+if(Config::get('app', 'DEBUG'))
+    ini_set('display_error', '1');
+else
+    ini_set('display_error', '0');
 
 // Eloquent ORM 数据库配置装载
 $capsule = new Capsule;
-$capsule->addConnection($config['database']['connections']['mysql']);
+//$capsule->addConnection($config['database']['connections']['mysql']);
+$capsule->addConnection(Config::get('database', 'connections.mysql'));
 $capsule->setEventDispatcher(new Dispatcher(new Container));
 $capsule->setAsGlobal();
 $capsule->bootEloquent();

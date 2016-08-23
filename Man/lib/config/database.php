@@ -38,7 +38,6 @@ return [
     ],
 
     'redis' => [
-
         'cluster' => false,
 
         'default' => [
