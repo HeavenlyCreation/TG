@@ -32,8 +32,8 @@ class Config{
      */
     public static function get($file, $key){
         $path = CONFDIR.$file.'.php';
-        if(isset(self::$conf[$path]))
-            return self::forKeys(self::$conf[$path], $key);
+        if(isset(self::$conf[$file]))
+            return self::forKeys(self::$conf[$file], $key);
         if(is_file($path)){
             $config = require_once($path);
             $confTemp = self::forKeys($config, $key);
@@ -57,11 +57,11 @@ class Config{
      */
     public static function all($file){
         $path = CONFDIR.$file.'.php';
-        if(isset(self::$conf[$path]))
-            return self::$conf[$path];
+        if(isset(self::$conf[$file]))
+            return self::$conf[$file];
         if(is_file($path)){
             $conf = require_once($path);
-            self::$conf[$path] = $conf;
+            self::$conf[$file] = $conf;
             return self::$conf;
         }else{
             return null;

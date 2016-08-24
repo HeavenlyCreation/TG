@@ -1,4 +1,11 @@
 <?php
+/**
+ * Created by IntelliJ IDEA.
+ * User: WangJ
+ * Date: 2016/7/16
+ * Time: 11:00
+ * Used: 系统的入口文件
+ */
 
 //use Symfony\Component\HttpFoundation\Request;   // 使用Request命名空间
 //
@@ -36,15 +43,19 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Container\Container;
 use Lib\Core\Config;
+use Lib\Core\Log;
 
 // config文件加载
 Config::init();
 
 /** 根据 DEBUG 判断是否显示错误信息 **/
-if(Config::get('app', 'DEBUG'))
-    ini_set('display_error', '1');
+if(Config::get('app', 'config.DEBUG'))
+    ini_set('display_errors', 'On');
 else
-    ini_set('display_error', '0');
+    ini_set('display_errors', 'Off');
+
+// 日志类初始化
+Log::init();
 
 // Eloquent ORM 数据库配置装载
 $capsule = new Capsule;
@@ -60,14 +71,15 @@ $request = Request::createFromGlobals();
 $controllerResolver = new HttpKernel\Controller\ControllerResolver();
 $argumentResolver = new HttpKernel\Controller\ArgumentResolver();
 $dispatcher = new EventDispatcher();
-$dispatcher->addListener('response', function(Core\ResponseEvent $event){
-    $response = $event->getResponse();
 
-    if($response->isRedirection() || ($response->headers->has('Content-Type') && false === strpos($response->headers->get('Content-Type'),'html')) || 'html'!==$event->getRequest()->getRequestFormat()){
-        return;
-    }
-    $response->setContent($response->getContent().'GA CODE');
-});
+//$dispatcher->addListener('response', function(Core\ResponseEvent $event){
+//    $response = $event->getResponse();
+//
+//    if($response->isRedirection() || ($response->headers->has('Content-Type') && false === strpos($response->headers->get('Content-Type'),'html')) || 'html'!==$event->getRequest()->getRequestFormat()){
+//        return;
+//    }
+//    $response->setContent($response->getContent().'GA CODE');
+//});
 
 $appCore = new \Lib\Core\AppCore($controllerResolver, $argumentResolver, $dispatcher);
 $response = $appCore->handle($request);
