@@ -13,5 +13,9 @@ return [
     'viewcache' =>  BASEDIR.'storage'.DIRECTORY_SEPARATOR.'viewcache',
 
     // log
-    'log'       =>  BASEDIR.'storage'.DIRECTORY_SEPARATOR.'log'
+    'log'       =>  BASEDIR.'storage'.DIRECTORY_SEPARATOR.'log',
+    
+    // MVC    
+    // View
+    'view'      =>  BASEDIR.'/src/Views',
 ];
