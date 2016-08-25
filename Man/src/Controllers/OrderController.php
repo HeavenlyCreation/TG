@@ -20,7 +20,8 @@ use Man\Models\EOrder;
 class OrderController extends BaseController
 {
     public function Index(){
-        return $this->tpl->render('Order/Index.twig', ["PageHeader"=>"订单信息列表", "Act"=>"order"]);
+        return View();   
+//        return $this->tpl->render('Order/Index.twig', ["PageHeader"=>"订单信息列表", "Act"=>"order"]);
     }
 
     public function Index2(Request $request){

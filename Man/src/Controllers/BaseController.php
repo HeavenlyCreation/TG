@@ -17,6 +17,8 @@ use Illuminate\Database\Capsule\Manager as DB;
 
 class BaseController
 {
+    use Lib\Core\Display;
+    
     // twig 实例
     public $tpl;
     //

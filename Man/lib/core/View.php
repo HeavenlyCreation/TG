@@ -9,7 +9,9 @@
 namespace Lib\Core;
 
 
-class View
+trait Display
 {
-
+    public function View(){
+        echo 'abc';
+    }
 }
