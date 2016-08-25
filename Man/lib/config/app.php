@@ -10,5 +10,6 @@ return [
     'config'    =>  [
         'BREAK' =>  '.',                // 调用配置文件的键分割符，例如'connections.mysql'中的'.'
         'DEBUG'     =>  true,           // 调试状态，true：显示错误提示，false：不显示
+        'TwigFileExt'   =>  '.twig'     // twig文件扩展名
     ]
 ];

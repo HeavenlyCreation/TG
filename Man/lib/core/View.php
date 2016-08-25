@@ -9,7 +9,7 @@
 namespace Lib\Core;
 
 
-trait Display
+trait View
 {
     public function View(){
         echo 'abc';

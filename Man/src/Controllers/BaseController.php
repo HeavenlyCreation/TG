@@ -17,17 +17,20 @@ use Illuminate\Database\Capsule\Manager as DB;
 
 class BaseController
 {
-    use Lib\Core\Display;
+    use \Lib\Core\View;
     
     // twig 实例
     public $tpl;
-    //
-    public $assets;
+    // 模板文件中的变量
+    public $args = [];
 
     public function __construct(){
         $this->TwigLoad();
     }
 
+    /**
+     * 加载Twig
+     */
     private function TwigLoad(){
         // twig 模板引擎设置
         $loader = new \Twig_Loader_Filesystem(Config::get('path', 'view'));
@@ -38,8 +41,25 @@ class BaseController
         ));
         $this->tpl->addExtension(new \Twig_Extension_Debug());
     }
-    public function View($file, $var){
-        return $this->tpl->render($file, $var);
+
+    /**
+     * 显示模板文件
+     * @param $file 模板文件名称, 以'.'分割命名空间
+     * @param $var  数组，传递给模板的数组
+     * @return mixed
+     */
+    public function View($file=null, $var=null){ //return debug_backtrace();
+        if(!isset($file)) {
+            // TODO 添加根据类、方法找到模板文件
+            $func = debug_backtrace()[1]['function'];
+        }else{
+            $path = Config::get('path', 'view');
+            $file = $path.str_replace('.', DIRECTORY_SEPARATOR, $file).Config::get('app', 'TwigFileExt');
+        }
+        if(is_file($file))
+            return $this->tpl->render($file, $var);
+        else
+            return '404';
     }
 
     /**
