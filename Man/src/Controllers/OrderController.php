@@ -21,7 +21,7 @@ class OrderController extends BaseController
 {
     public function Index(){
         print_r(self::View());
-//        return $this->tpl->render('Order/Index.twig', ["PageHeader"=>"订单信息列表", "Act"=>"order"]);
+        return $this->tpl->render('Order/Index.twig', ["PageHeader"=>"订单信息列表", "Act"=>"order"]);
     }
 
     public function Index2(Request $request){

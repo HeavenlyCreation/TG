@@ -1,0 +1,31 @@
+{% extends "Layout/Main.twig" %}
+
+{% block Content %}
+
+    <div class="box box-default">
+        <!-- /.box-header -->
+        <div class="form-horizontal">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">员工号</label>
+                    <div class="col-sm-9">
+                        <label for="" class="control-label">{{ Worker.JobNumber }}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">工人姓名</label>
+                    <div class="col-sm-9">
+                        <input id="txtName" class="form-control" type="text" value="{{ Worker.Name }}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">地址</label>
+                    <div class="col-sm-9">
+                        <input id="txtName" class="form-control" type="text" value="{{ Worker.AddressCD }}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
