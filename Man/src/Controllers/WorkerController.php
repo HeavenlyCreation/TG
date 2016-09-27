@@ -31,21 +31,23 @@ class WorkerController extends BaseController
     }
 
     public function Index2(Request $request){
-        $wName = isset($_GET['search']) ? htmlentities($_GET['search']["value"]) : "";
+        $wName = isset($_POST['search']) ? htmlentities($_POST['search']["value"]) : "";
         $paging = new Paging();
-        $paging->setSelect(" u.LoginID,u.Name,w.JobNumber,w.IdentityNum,u.Age.u.Sex ");
-        $paging->setFrom(" FROM MWorker w LEFT JOIN MUser u on w.UserId=u.UserId ");
-        $paging->setWhere(" u.Name like '%".$wName."%'");
+        $paging->setSelect(" w.WorkerID,u.LoginID,u.Name,w.JobNumber,w.IdentityNum,u.Age,u.Sex ");
+        $paging->setFrom(" MWorker w LEFT JOIN MUser u on w.UserId=u.UserId ");
+
+
         $listJson = $this->GetList($request, $paging);
         return $listJson;
     }
 
-    public function Detail(){
-        $wId = isset($_GET['wId']) ? htmlentities($_GET['wId']) : "";
+    public function Detail(Request $request,$workerID){
+
         $worker = DB::table("MWorker")
             ->leftJoin("MUser","MUser.UserID","=","MWorker.UserID")
             ->select("*")
-            ->where("WorkerID","=", $wId)->first();
-        return parent::View('Workers/Detail.twig', ["PageHeader"=>"工人详细信息", "Worker"=>$worker]);
+            ->where("WorkerID","=", $workerID)
+            ->first();
+        return $this->tpl->render('Workers/Detail.twig', ["PageHeader"=>"工人详细信息", "Worker"=>$worker]);
     }
 }

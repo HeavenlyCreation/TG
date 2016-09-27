@@ -17,7 +17,8 @@ $routes->addRoute('GET', '/login', '\Man\Controllers\LoginController@index');
 $routes->addRoute('GET', '/home', '\Man\Controllers\HomeController@index');
 // 工人列表
 $routes->addRoute('GET', '/workers', '\Man\Controllers\workerController@index');
-$routes->addRoute('POST', '/workers', '\Man\Controllers\workerController@index2');
+$routes->addRoute('POST', '/workers', '\Man\Controllers\workerController@Index2');
+$routes->addRoute('GET', '/workerDetail/{workerID:\d+}', '\Man\Controllers\workerController@Detail');
 // 订单列表
 $routes->addRoute('GET', '/orders', '\Man\Controllers\OrderController@index');
 $routes->addRoute('POST', '/orders', '\Man\Controllers\OrderController@index2');
