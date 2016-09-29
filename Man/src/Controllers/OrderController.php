@@ -28,7 +28,7 @@ class OrderController extends BaseController
         $paging = new Paging();
         $paging->setSelect(" eorder.OrderID,eorder.OrderNum,muser.Nickname as Customer,eorder.SumPrice,eorder.CommitTime,eorder.BookFitTime,eorder.OrderStatus ");
         $paging->setFrom(" eorder left join mcustomer on eorder.CustomerID=mcustomer.CustomerID left join muser on mcustomer.UserID=muser.UserID ");
-        $paging->setWhere(" CONCAT_WS(',',OrderID,OrderNum,CommitTime) like ? ");
+        $paging->setWhere(" CONCAT_WS(',',eorder.OrderID,eorder.OrderNum,muser.Nickname,eorder.SumPrice,eorder.CommitTime,eorder.BookFitTime,eorder.OrderStatus) like ? ");
         $listJson = $this->GetList($request, $paging);
         return $listJson;
     }
