@@ -11,6 +11,23 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/example', function () {
+    return view('example');
+});
+
+Route::get('/welcome', function () {
     return view('welcome');
+});
+
+Route::get('/', 'HomeController@Index');
+
+
+Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    Route::get('/', function ()    {
+        // Uses Auth Middleware
+    });
+
+    Route::get('user/profile', function () {
+        // Uses Auth Middleware
+    });
 });
