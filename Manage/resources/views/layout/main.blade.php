@@ -31,6 +31,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    @yield('header')
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -260,11 +262,19 @@ desired effect
                 <li class={{ isset($act) && $act=="worker"?"active":"#" }}>
                     <a href="/workers"><i class="fa fa-wrench"></i><span>工人信息管理</span></a>
                 </li>
-                <li class={{ isset($act) && $act=="productPrice"?"active":"#" }}>
-                    <a href="#"><i class="fa fa-rmb"></i><span>物品价格修改</span></a>
+                <li class="treeview {{ isset($act) && $act=="product"?"active":"" }}">
+                    <a href="#"><i class="fa fa-rmb"></i> <span>服务信息管理</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/ProductCategory/List">服务类别</a></li>
+                        <li><a href="/Product/List">服务信息</a></li>
+                    </ul>
                 </li>
                 <li class={{ isset($act) && $act=="order"?"active":"#" }}>
-                    <a href="/orders"><i class="fa fa-files-o"></i> <span>订单信息管理</span></a>
+                    <a href="/Order/List"><i class="fa fa-files-o"></i> <span>订单信息管理</span></a>
                 </li>
                 <li class={{ isset($act) && $act=="setup"?"active":"#" }}>
                     <a href="/setup"><i class="fa fa-gear"></i><span>系统设置</span></a>
@@ -280,8 +290,8 @@ desired effect
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Page Header
-                <small>Optional description</small>
+                {{ $pageHeader or "" }}
+                <small>{{ $description or "" }}</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -402,5 +412,7 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
      fixed layout. -->
+
+@yield('footer')
 </body>
 </html>

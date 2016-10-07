@@ -21,13 +21,8 @@ Route::get('/welcome', function () {
 
 Route::get('/', 'HomeController@Index');
 
-
-Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => 'admin'], function () {
-    Route::get('/', function ()    {
-        // Uses Auth Middleware
-    });
-
-    Route::get('user/profile', function () {
-        // Uses Auth Middleware
-    });
-});
+// 订单管理
+Route::get('/Order/List', 'OrderController@ListPage');
+Route::post('/Order/List', 'OrderController@ListData');
+Route::get('/Order/Detail/{orderID}', 'OrderController@Detail');
+Route::get('/Order/Edit/{orderID}', 'OrderController@Edit');
