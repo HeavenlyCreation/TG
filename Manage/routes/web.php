@@ -26,3 +26,9 @@ Route::get('/Order/List', 'OrderController@ListPage');
 Route::post('/Order/List', 'OrderController@ListData');
 Route::get('/Order/Detail/{orderID}', 'OrderController@Detail');
 Route::get('/Order/Edit/{orderID}', 'OrderController@Edit');
+
+// 工人管理
+Route::get('/Worker/List', 'WorkerController@ListPage');
+Route::post('/Worker/List', 'WorkerController@ListData');
+Route::get('/Worker/Detail/{workerID}', 'WorkerController@Detail');
+Route::get('/Worker/Edit/{workerID}', 'WorkerController@Edit');
