@@ -26,6 +26,7 @@ Route::get('/Order/List', 'OrderController@ListPage');
 Route::post('/Order/List', 'OrderController@ListData');
 Route::get('/Order/Detail/{orderID}', 'OrderController@Detail');
 Route::get('/Order/Edit/{orderID}', 'OrderController@Edit');
+Route::post('/Order/DropStatus/{codeKey}', 'OrderController@DropStatus');
 
 // 工人管理
 Route::get('/Worker/List', 'WorkerController@ListPage');

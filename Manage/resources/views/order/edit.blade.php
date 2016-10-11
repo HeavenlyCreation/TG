@@ -2,7 +2,6 @@
 
 @section("header")
     <link rel="stylesheet" href="{{asset("/plugin/datetimepicker/css/bootstrap-datetimepicker.min.css")}}">
-    {{--<link rel="stylesheet" href="{{asset("/plugin/daterangepicker/daterangepicker.css")}}">--}}
 @stop
 
 @section('content')
@@ -60,15 +59,34 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="" class="col-sm-2 control-label">下单人电话</label>
+                <label for="" class="col-sm-2 control-label">联系电话</label>
                 <div class="col-sm-9">
-                    <input type="Tel" class="form-control" id="txtTel" value="{{ ($order->Customer->User->Tel or $order->Customer->User->Tel2) or "" }}">
+                    <input type="text" class="form-control" id="txtTel" value="{{ ($order->Customer->User->Tel or $order->Customer->User->Tel2) or "" }}">
                 </div>
             </div>
             <div class="form-group">
-                <label for="" class="col-sm-2 control-label">下单人地址</label>
+                <label for="" class="col-sm-2 control-label">安装地址</label>
                 <div class="col-sm-9">
-                    <input type="Address" class="form-control" id="txtAddress" value="{{ $order->AddressCD }}">
+                    <select class="form-control" id="province">
+                    </select>
+
+                    <select class="form-control" id="city">
+                        <option>option 1</option>
+                        <option>option 2</option>
+                        <option>option 3</option>
+                        <option>option 4</option>
+                        <option>option 5</option>
+                    </select>
+
+                    <select class="form-control" id="district">
+                        <option>option 1</option>
+                        <option>option 2</option>
+                        <option>option 3</option>
+                        <option>option 4</option>
+                        <option>option 5</option>
+                    </select>
+
+                    <input type="text" class="form-control" id="txtAddress" value="{{ $order->AddressDif }}">
                 </div>
             </div>
             <div class="form-group">
@@ -80,37 +98,44 @@
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">提交时间</label>
                 <div class="col-sm-9">
-                    <input type="Name" class="form-control" id="txtName" value="">
-                    <label for="" class="control-label">
-                        {{ $order->CommitTime or "" }}
-                    </label>
+                    <div class="input-group date dtpicker col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_CommitTime">
+                        <input id="CommitTime" class="form-control" size="16" type="text" value="{{ $order->CommitTime }}" readonly>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                    </div>
+                    <input type="hidden" id="dtp_CommitTime" value="" /><br/>
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">预约时间</label>
                 <div class="col-sm-9">
-                    <input type="Name" class="form-control" id="txtName" value="">
-                    <label for="" class="control-label">{{ $order["BookFitTime"] }}</label>
+                    <div class="input-group date dtpicker col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_BookFitTime">
+                        <input id="BookFitTime" class="form-control" size="16" type="text" value="{{ $order->BookFitTime }}" readonly>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                    </div>
+                    <input type="hidden" id="dtp_BookFitTime" value="" /><br/>
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">订单状态</label>
                 <div class="col-sm-9">
-                    <input type="Name" class="form-control" id="txtName" value="">
-                    <label for="" class="control-label">{{ $order->OrderStatus }}</label>
+                    <select class="form-control" id="OrderStatus">{{0==="ac"}}
+                        @foreach($orderStatus->get('data') as $status)
+                            <option {{$status->CodeKey === $orderStatus->get('default')?"selected":""}} value="{{$status->CodeKey}}">{{$status->CodeDesc}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">完成时间</label>
                 <div class="col-sm-9">
-                    <input type="Name" class="form-control" id="txtName" value="">
-                    <label for="" class="control-label">{{ $order->FinishTime }}</label>
-                    <div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
-                        <input class="form-control" size="16" type="text" value="" readonly>
+                    <div class="input-group date dtpicker col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_FinishTime">
+                        <input id="FinishTime" class="form-control" size="16" type="text" value="{{ $order->FinishTime }}" readonly>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                     </div>
-                    <input type="hidden" id="dtp_input1" value="" /><br/>
+                    <input type="hidden" id="dtp_FinishTime" value="" /><br/>
                 </div>
             </div>
             <div class="form-group">
@@ -133,7 +158,7 @@
     <script src="{{asset("/plugin/datetimepicker/js/bootstrap-datetimepicker.js")}}"></script>
     <script src="{{asset("/plugin/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js")}}"></script>
     <script type="text/javascript">
-    $('.form_datetime').datetimepicker({
+    $('.dtpicker').datetimepicker({
         language:  'zh-CN',
         weekStart: 1,
         todayBtn:  1,
@@ -143,5 +168,6 @@
         forceParse: 0,
         showMeridian: 1
     });
+    $()
     </script>
 @stop
