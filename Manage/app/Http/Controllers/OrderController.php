@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\MCode;
+use App\MUser;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,8 @@ class OrderController extends Controller
      * 列表页
      */
     public function ListPage(){
-        return view('order.list', ["pageHeader"=>"订单信息列表", "act"=>"order"]);
+        $user = MUser::firstOrFail();
+        return view('order.list', ["pageHeader"=>"订单信息列表", "act"=>"order", "user"=>$user]);
     }
 
     /*

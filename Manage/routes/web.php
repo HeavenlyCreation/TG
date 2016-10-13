@@ -19,7 +19,12 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/', 'HomeController@Index');
+
+Route::get('/', function(){
+    return view("auth.login");
+});
+
+Route::get('/Home', 'HomeController@Index');
 
 // 订单管理
 Route::get('/Order/List', 'OrderController@ListPage');
@@ -33,3 +38,6 @@ Route::get('/Worker/List', 'WorkerController@ListPage');
 Route::post('/Worker/List', 'WorkerController@ListData');
 Route::get('/Worker/Detail/{workerID}', 'WorkerController@Detail');
 Route::get('/Worker/Edit/{workerID}', 'WorkerController@Edit');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

@@ -62,6 +62,7 @@ class ComposerStaticInitf552daa799ac2a29694936bdf07fc081
         'P' => 
         array (
             'Psy\\' => 4,
+            'Psr\\Log\\' => 8,
             'PhpParser\\' => 10,
         ),
         'M' => 
@@ -192,6 +193,10 @@ class ComposerStaticInitf552daa799ac2a29694936bdf07fc081
         array (
             0 => __DIR__ . '/..' . '/psy/psysh/src/Psy',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
@@ -241,10 +246,6 @@ class ComposerStaticInitf552daa799ac2a29694936bdf07fc081
     public static $prefixesPsr0 = array (
         'P' => 
         array (
-            'Psr\\Log\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/psr/log',
-            ),
             'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
@@ -381,6 +382,7 @@ class ComposerStaticInitf552daa799ac2a29694936bdf07fc081
         'PHPUnit_Framework_Constraint_ClassHasStaticAttribute' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/ClassHasStaticAttribute.php',
         'PHPUnit_Framework_Constraint_Composite' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/Composite.php',
         'PHPUnit_Framework_Constraint_Count' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/Count.php',
+        'PHPUnit_Framework_Constraint_DirectoryExists' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/DirectoryExists.php',
         'PHPUnit_Framework_Constraint_Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/Exception.php',
         'PHPUnit_Framework_Constraint_ExceptionCode' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/ExceptionCode.php',
         'PHPUnit_Framework_Constraint_ExceptionMessage' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/ExceptionMessage.php',
@@ -398,8 +400,10 @@ class ComposerStaticInitf552daa799ac2a29694936bdf07fc081
         'PHPUnit_Framework_Constraint_IsJson' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/IsJson.php',
         'PHPUnit_Framework_Constraint_IsNan' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/IsNan.php',
         'PHPUnit_Framework_Constraint_IsNull' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/IsNull.php',
+        'PHPUnit_Framework_Constraint_IsReadable' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/IsReadable.php',
         'PHPUnit_Framework_Constraint_IsTrue' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/IsTrue.php',
         'PHPUnit_Framework_Constraint_IsType' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/IsType.php',
+        'PHPUnit_Framework_Constraint_IsWritable' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/IsWritable.php',
         'PHPUnit_Framework_Constraint_JsonMatches' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/JsonMatches.php',
         'PHPUnit_Framework_Constraint_JsonMatches_ErrorMessageProvider' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/JsonMatches/ErrorMessageProvider.php',
         'PHPUnit_Framework_Constraint_LessThan' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/LessThan.php',
