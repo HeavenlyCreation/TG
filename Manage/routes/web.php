@@ -19,12 +19,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-
-Route::get('/', function(){
-    return view("auth.login");
-});
-
-Route::get('/Home', 'HomeController@Index');
+Route::get('/', 'HomeController@Index');
 
 // 订单管理
 Route::get('/Order/List', 'OrderController@ListPage');
@@ -38,6 +33,21 @@ Route::get('/Worker/List', 'WorkerController@ListPage');
 Route::post('/Worker/List', 'WorkerController@ListData');
 Route::get('/Worker/Detail/{workerID}', 'WorkerController@Detail');
 Route::get('/Worker/Edit/{workerID}', 'WorkerController@Edit');
+
+// 服务管理
+// 服务类别
+Route::get('/ProductCategory/List', 'ProductCategoryController@ListPage');
+Route::post('/ProductCategory/List', 'ProductCategoryController@ListData');
+Route::get('/ProductCategory/Detail/{productCategoryID}', 'ProductCategoryController@Detail');
+Route::get('/ProductCategory/Edit/{productCategoryID}', 'ProductCategoryController@Edit');
+// 服务信息
+Route::get('/Product/List', 'ProductController@ListPage');
+Route::post('/Product/List', 'ProductController@ListData');
+Route::get('/Product/Detail/{productID}', 'ProductController@Detail');
+Route::get('/Product/Edit/{productID}', 'ProductController@Edit');
+
+
+
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');

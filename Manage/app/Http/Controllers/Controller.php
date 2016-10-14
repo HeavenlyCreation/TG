@@ -15,6 +15,9 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function __construct(){
+        $this->middleware('auth:web');
+    }
 
     /**
      * 数据列表数据获取
