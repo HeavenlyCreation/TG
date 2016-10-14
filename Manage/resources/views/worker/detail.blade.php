@@ -44,7 +44,8 @@
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">所在地区</label>
                 <div class="col-sm-9">
-                    <label for="" class="control-label">{{ $worker->Address->AddressName or "" }}{{ $worker->AddressDif or "" }}</label>
+                    <label for="" class="control-label">{{ $worker->Address->AddressName or "" }}
+                    <br>{{ $worker->AddressDif or "" }}</label>
                 </div>
             </div>
         </div>

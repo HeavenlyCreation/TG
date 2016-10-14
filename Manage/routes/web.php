@@ -32,3 +32,4 @@ Route::get('/Worker/List', 'WorkerController@ListPage');
 Route::post('/Worker/List', 'WorkerController@ListData');
 Route::get('/Worker/Detail/{workerID}', 'WorkerController@Detail');
 Route::get('/Worker/Edit/{workerID}', 'WorkerController@Edit');
+Route::post('/Worker/Edit/{workerID}', 'WorkerController@SaveData');

@@ -26,8 +26,24 @@ class WorkerController extends Controller
         return $listJSON;
     }
 
-    public function Detail($workerID){
+    public function Detail($workerID)
+    {
         $worker = MWorker::where("WorkerID", $workerID)->firstOrFail();
-        return view("Worker.Detail",["pageHeader"=>"工人修改", "act"=>"worker", "worker"=>$worker]);
+        return view("Worker.Detail",["pageHeader"=>"工人详情", "act"=>"worker", "worker"=>$worker]);
+    }
+
+    public function Edit($workerID)
+    {
+        $worker = MWorker::where("WorkerID", $workerID)->firstOrFail();
+        return view("Worker.Edit",["pageHeader"=>"工人修改", "act"=>"worker", "worker"=>$worker]);
+    }
+
+    public function SaveData($workerID)
+    {
+        // $worker = MWorker::where("WorkerID", $workerID)->firstOrFail();
+        // $worker->IdentityNum = $_POST["IdentityNum"];
+        // $worker->save();
+
+        return $workerID;
     }
 }
