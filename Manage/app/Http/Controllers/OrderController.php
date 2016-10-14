@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\MCode;
+use App\MUser;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Lib\DT\Paging;
 use App\EOrder;
+use Illuminate\Support\Fluent;
 
 class OrderController extends Controller
 {
@@ -14,7 +17,8 @@ class OrderController extends Controller
      * 列表页
      */
     public function ListPage(){
-        return view('order.list', ["pageHeader"=>"订单信息列表", "act"=>"order"]);
+        $user = MUser::firstOrFail();
+        return view('order.list', ["pageHeader"=>"订单信息列表", "act"=>"order", "user"=>$user]);
     }
 
     /*
@@ -46,6 +50,22 @@ class OrderController extends Controller
     public function Edit($orderID){
         $order = EOrder::where("OrderID", $orderID)->firstOrFail();
         $mv = new Paging();
-        return view('order.edit', ["pageHeader"=>"订单修改", "act"=>"order", "order"=>$order]);
+        $orderStatus = $this->DropStatus($order->OrderStatus);
+        return view('order.edit', ["pageHeader"=>"订单修改", "act"=>"order", "order"=>$order, "orderStatus"=>$orderStatus]);
+    }
+
+    /*
+     * 获取订单状态列表
+     */
+    public function DropStatus($CodeKey){
+        $code = MCode::select("CodeKey", "CodeDesc")
+            ->where("CodeType", "OrderStatus")
+            ->orderby("Sort")
+            ->get();
+        $drop = new Fluent([
+            "default"=> $CodeKey,
+            "data"=> $code
+        ]);
+        return $drop;
     }
 }
