@@ -9,7 +9,7 @@
 <div class="box box-default">
     <div class="box-header with-border">
         <h3 class="box-title">
-            {{ $order->OrderNum }}
+
         </h3>
 
         <div class="box-tools pull-right">
@@ -25,49 +25,49 @@
                 <div class="form-group">
                     <label for="" class="col-sm-2 control-label">下单人</label>
                     <div class="col-sm-9">
-                        <label for="" class="col-sm-2 control-label">{{ $order->Customer->UserName or "" }}</label>
+                        <label for="" class="col-sm-2 control-label">超级管理员</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="" class="col-sm-2 control-label">订单产品</label>
                     <div class="col-sm-9">
-                        @if (count($order->OrderProduct) > 0)
-                        <div class="box">
-                            <div class="box-body no-padding">
-                                <table class="table table-striped">
-                                    <tbody>
-                                    <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th>产品类别</th>
-                                        <th>产品名称</th>
-                                        <th>单价</th>
-                                        <th>数量</th>
-                                    </tr>
-                                    @foreach ($order->OrderProduct as $item)
-                                    <tr>
-                                        <td>{{ $loop->index }}</td>
-                                        <td>{{ $item->Product->Category->CategoryName }}</td>
-                                        <td>{{ $item->Product->ProductName }}</td>
-                                        <td>{{ $item->Product->Price }}</td>
-                                        <td>{{ $item->Quantity }}</td>
-                                    </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.box-body -->
-                        </div>
-                        @endif
+                        {{--@if (count($order->OrderProduct) > 0)--}}
+                        {{--<div class="box">--}}
+                            {{--<div class="box-body no-padding">--}}
+                                {{--<table class="table table-striped">--}}
+                                    {{--<tbody>--}}
+                                    {{--<tr>--}}
+                                        {{--<th style="width: 10px">#</th>--}}
+                                        {{--<th>产品类别</th>--}}
+                                        {{--<th>产品名称</th>--}}
+                                        {{--<th>单价</th>--}}
+                                        {{--<th>数量</th>--}}
+                                    {{--</tr>--}}
+                                    {{--@foreach ($order->OrderProduct as $item)--}}
+                                    {{--<tr>--}}
+                                        {{--<td>{{ $loop->index }}</td>--}}
+                                        {{--<td>{{ $item->Product->Category->CategoryName }}</td>--}}
+                                        {{--<td>{{ $item->Product->ProductName }}</td>--}}
+                                        {{--<td>{{ $item->Product->Price }}</td>--}}
+                                        {{--<td>{{ $item->Quantity }}</td>--}}
+                                    {{--</tr>--}}
+                                    {{--@endforeach--}}
+                                    {{--</tbody>--}}
+                                {{--</table>--}}
+                            {{--</div>--}}
+                            {{--<!-- /.box-body -->--}}
+                        {{--</div>--}}
+                        {{--@endif--}}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="" class="col-sm-2 control-label">联系电话</label>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" id="txtTel" name="txtTel" value="{{ $order->Tel or "" }}">
+                        <input type="text" class="form-control" id="txtTel" name="txtTel">
                     </div>
                     <label for="" class="col-sm-3 control-label">总金额</label>
                     <div class="col-sm-3">
-                        <input type="SumPrice" class="form-control" id="txtSumPrice" name="txtSumPrice" value="{{ $order->SumPrice }}">
+                        <input type="SumPrice" class="form-control" id="txtSumPrice" name="txtSumPrice">
                     </div>
                 </div>
                 <div class="form-group">
@@ -81,16 +81,16 @@
                     </div>
                     <div class="col-sm-3">
                         <select class="form-control" id="city">
-                            @foreach($city->data as $item)
-                                <option {{$item->AddressCD == $city->default?"selected":""}} value={{$item->AddressCD}}>{{$item->AddressName}}</option>
-                            @endforeach
+                            {{--@foreach($city->data as $item)--}}
+                                {{--<option {{$item->AddressCD == $city->default?"selected":""}} value={{$item->AddressCD}}>{{$item->AddressName}}</option>--}}
+                            {{--@endforeach--}}
                         </select>
                     </div>
                     <div class="col-sm-3">
                         <select class="form-control" id="district" name="selDistrict">
-                            @foreach($district->data as $item)
-                                <option {{$item->AddressCD == $district->default?"selected":""}} value={{$item->AddressCD}}>{{$item->AddressName}}</option>
-                            @endforeach
+                            {{--@foreach($district->data as $item)--}}
+                                {{--<option {{$item->AddressCD == $district->default?"selected":""}} value={{$item->AddressCD}}>{{$item->AddressName}}</option>--}}
+                            {{--@endforeach--}}
                         </select>
                     </div>
 
@@ -98,14 +98,14 @@
                 <div class="form-group">
                     <label for="" class="col-sm-2 control-label"></label>
                     <div class="col-sm-9">
-                        <textarea class="form-control" id="txtAddress" name="txtAddress">{{ $order->AddressDif }}</textarea>
+                        <textarea class="form-control" id="txtAddress" name="txtAddress"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="" class="col-sm-2 control-label">提交时间</label>
                     <div class="col-sm-3">
                         <div class="input-group date dtpicker col-md-12" data-date="{{\Carbon\carbon::now()}}" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_CommitTime">
-                            <input id="CommitTime" class="form-control" size="16" type="text" value="{{ $order->CommitTime }}" readonly>
+                            <input id="CommitTime" class="form-control" size="16" type="text" readonly>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                         </div>
@@ -114,7 +114,7 @@
                     <label for="" class="col-sm-3 control-label">预约时间</label>
                     <div class="col-sm-3">
                         <div class="input-group date dtpicker col-md-12" data-date="{{\Carbon\carbon::now()}}" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_BookFitTime">
-                            <input id="BookFitTime" class="form-control" size="16" type="text" value="{{ $order->BookFitTime }}" readonly>
+                            <input id="BookFitTime" class="form-control" size="16" type="text" readonly>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                         </div>
@@ -133,7 +133,7 @@
                     <label for="" class="col-sm-3 control-label">完成时间</label>
                     <div class="col-sm-3">
                         <div class="input-group date dtpicker col-md-12" data-date="{{\Carbon\carbon::now()}}" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_FinishTime">
-                            <input id="FinishTime" class="form-control" size="16" type="text" value="{{ $order->FinishTime }}" readonly>
+                            <input id="FinishTime" class="form-control" size="16" type="text" readonly>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                         </div>
@@ -143,7 +143,7 @@
                 <div class="form-group">
                     <label for="" class="col-sm-2 control-label">备注</label>
                     <div class="col-sm-9">
-                        <textarea type="Remark" rows="3" class="form-control" id="txtRemark" name="txtRemark" value="{{ $order["Remark"] }}"></textarea>
+                        <textarea type="Remark" rows="3" class="form-control" id="txtRemark" name="txtRemark"></textarea>
                     </div>
                 </div>
             </form>
@@ -156,8 +156,35 @@
             </div>
         </div>
     </div>
+
+
+    <!--Modal-->
+    <div id="myModal">
+        <div class="modal modal-info fade">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">Info Modal</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>One fine body…</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline">Save changes</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+    </div>
 </div>
 <!-- /.box -->
+
 @stop
 
 @section("footer")
@@ -203,11 +230,12 @@
     $('.btn-save').click(function() {
         // bind 'myForm' and provide a simple callback function
         $('#myForm').ajaxSubmit({
-            url: '/Order/Edit',
+            url: '/Order/Add',
             type: 'POST',
-            data: {'OrderID': '{{ $order->OrderID }}'},
             success: function(data){
-                alert(data);
+                $('#myModal').modal('show');
+                if(data=='0')
+                    window.location.href="/Order/List";
             }
         });
     });

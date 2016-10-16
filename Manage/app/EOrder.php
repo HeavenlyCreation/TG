@@ -16,7 +16,7 @@ class EOrder extends Model
      */
     public function Customer()
     {
-        return $this->belongsTo('App\MCustomer', 'CustomerID', 'CustomerID');
+        return $this->belongsTo('App\MLogin', 'LoginID', 'LoginID');
     }
 
     /**

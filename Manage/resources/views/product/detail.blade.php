@@ -5,7 +5,7 @@
 <div class="box box-default">
     <div class="box-header with-border">
         <h3 class="box-title">
-            {{ $category->CategoryName }}
+            {{ $product->ProductName }}
         </h3>
 
         <div class="box-tools pull-right">
@@ -17,21 +17,33 @@
     <div class="form-horizontal">
         <div class="box-body">
             <div class="form-group">
-                <label for="" class="col-sm-2 control-label">类别名称</label>
+                <label for="" class="col-sm-2 control-label">产品名称</label>
                 <div class="col-sm-9">
-                    <label for="" class="control-label">{{ $category->CategoryName }}</label>
+                    <label for="" class="control-label">{{ $product->ProductName or "" }}</label>
                 </div>
             </div>
             <div class="form-group">
-                <label for="" class="col-sm-2 control-label">上级类别</label>
+                <label for="" class="col-sm-2 control-label">类别名称</label>
                 <div class="col-sm-9">
-                    <label for="" class="control-label">{{ $category->FCategory->CategoryName or "" }}</label>
+                    <label for="" class="control-label">{{ $product->Category->CategoryName }}</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">价格</label>
+                <div class="col-sm-9">
+                    <label for="" class="control-label">{{ $product->Price }}</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">备注</label>
+                <div class="col-sm-9">
+                    <label for="" class="control-label">{{ $product->Remark }}</label>
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">创建时间</label>
                 <div class="col-sm-9">
-                    <label for="" class="control-label">{{ $category->CreatedTime }}</label>
+                    <label for="" class="control-label">{{ $product->CreatedTime }}</label>
                 </div>
             </div>
         </div>

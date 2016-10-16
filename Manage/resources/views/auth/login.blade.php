@@ -12,13 +12,13 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('loginid') ? ' has-error' : '' }} has-feedback">
+                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }} has-feedback">
                             <div class="col-md-8 col-md-offset-2">
-                                <input id="loginid" type="text" class="form-control" name="loginid" value="{{ old('loginid') }}" style="border-radius: 0;" autofocus placeholder="Username">
+                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" style="border-radius: 0;" autofocus placeholder="Username">
                                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                                @if ($errors->has('loginid'))
+                                @if ($errors->has('username'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('loginid') }}</strong>
+                                        <strong>{{ $errors->first('username') }}</strong>
                                     </span>
                                 @endif
                             </div>

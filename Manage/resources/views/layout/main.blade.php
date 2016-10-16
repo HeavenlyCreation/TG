@@ -269,7 +269,7 @@ desired effect
                 <li class="header">菜单</li>
                 <!-- Optionally, you can add icons to the links -->
                 <li class={{ isset($act) && $act=="worker"?"active":"#" }}>
-                    <a href="/Worker/List"><i class="fa fa-wrench"></i><span>工人信息管理</span></a>
+                    <a href="/Worker/List"><i class="fa fa-users"></i><span>工人信息管理</span></a>
                 </li>
                 <li class="treeview {{ isset($act) && $act=="product"?"active":"" }}">
                     <a href="#"><i class="fa fa-rmb"></i> <span>服务信息管理</span>
@@ -278,12 +278,20 @@ desired effect
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/ProductCategory/List">服务类别</a></li>
-                        <li><a href="/Product/List">服务信息</a></li>
+                        <li><a href="/ProductCategory/List"><i class="fa fa-circle-o"></i> 服务类别</a></li>
+                        <li><a href="/Product/List"><i class="fa fa-circle-o"></i> 服务信息</a></li>
                     </ul>
                 </li>
-                <li class={{ isset($act) && $act=="order"?"active":"#" }}>
-                    <a href="/Order/List"><i class="fa fa-files-o"></i> <span>订单信息管理</span></a>
+                <li class="treeview {{ isset($act) && $act=="order"?"active":"" }}">
+                    <a href="#"><i class="fa fa-files-o"></i> <span>订单信息管理</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/Order/List"><i class="fa fa-circle-o"></i> 订单管理</a></li>
+                        <li><a href="/Order/Add"><i class="fa fa-circle-o"></i> 下单</a></li>
+                    </ul>
                 </li>
                 <li class={{ isset($act) && $act=="setup"?"active":"#" }}>
                     <a href="/Setup"><i class="fa fa-gear"></i><span>系统设置</span></a>
@@ -323,10 +331,10 @@ desired effect
     <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-            Anything you want
+            Do you want to do!
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2016 <a href="#">TG Studio</a>.</strong> All rights reserved.
     </footer>
 
     <!-- Control Sidebar -->
