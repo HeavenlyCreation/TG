@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <label for="" class="col-sm-2 control-label">下单人</label>
                     <div class="col-sm-9">
-                        <input type="Name" class="form-control" id="txtName" name="txtName" value="{{ $order->Customer->User->Nickname or "" }}">
+                        <label for="" class="col-sm-2 control-label">{{ $order->Customer->UserName or "" }}</label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -63,7 +63,7 @@
                 <div class="form-group">
                     <label for="" class="col-sm-2 control-label">联系电话</label>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" id="txtTel" name="txtTel" value="{{ ($order->Customer->User->Tel or $order->Customer->User->Tel2) or "" }}">
+                        <input type="text" class="form-control" id="txtTel" name="txtTel" value="{{ $order->Tel or "" }}">
                     </div>
                     <label for="" class="col-sm-3 control-label">总金额</label>
                     <div class="col-sm-3">

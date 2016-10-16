@@ -19,7 +19,7 @@
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">下单人</label>
                 <div class="col-sm-9">
-                    <label for="" class="control-label">{{ $order->Customer->User->Nickname or "" }}</label>
+                    <label for="" class="control-label">{{ $order->Customer->UserName or "" }}</label>
                 </div>
             </div>
             <div class="form-group">
@@ -57,7 +57,7 @@
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">下单人电话</label>
                 <div class="col-sm-9">
-                    <label for="" class="control-label">{{ ($order->Customer->User->Tel or $order->Customer->User->Tel2) or "" }}</label>
+                    <label for="" class="control-label">{{ $order->Tel or "" }}</label>
                 </div>
             </div>
             <div class="form-group">
@@ -108,7 +108,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-            <button type="submit" class="btn btn-default pull-right" onclick="history.back();">返回</button>
+            <button type="submit" class="btn btn-default pull-right" onclick="location.href='/Order/List'">返回</button>
         </div>
     </div>
 </div>

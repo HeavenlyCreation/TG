@@ -17,8 +17,7 @@ class OrderController extends Controller
      * 列表页
      */
     public function ListPage(){
-        $user = MUser::firstOrFail();
-        return view('order.list', ["pageHeader"=>"订单信息列表", "act"=>"order", "user"=>$user]);
+        return view('order.list', ["pageHeader"=>"订单信息列表", "act"=>"order"]);
     }
 
     /*
@@ -26,9 +25,9 @@ class OrderController extends Controller
      */
     public function ListData(Request $request){
         $paging = new Paging();
-        $paging->setSelect(" eorder.OrderID,eorder.OrderNum,muser.Nickname as Customer,eorder.SumPrice,eorder.CommitTime,eorder.BookFitTime,eorder.OrderStatus ");
-        $paging->setFrom(" eorder left join mcustomer on eorder.CustomerID=mcustomer.CustomerID left join muser on mcustomer.UserID=muser.UserID ");
-        $paging->setWhere(" CONCAT_WS(',',eorder.OrderID,eorder.OrderNum,muser.Nickname,eorder.SumPrice,eorder.CommitTime,eorder.BookFitTime,eorder.OrderStatus) like ? ");
+        $paging->setSelect(" eorder.OrderID,eorder.OrderNum,mlogin.UserName as Customer,eorder.SumPrice,eorder.CommitTime,eorder.BookFitTime,eorder.OrderStatus ");
+        $paging->setFrom(" eorder left join mlogin on eorder.LoginID=mlogin.LoginID ");
+        $paging->setWhere(" CONCAT_WS(',',eorder.OrderID,eorder.OrderNum,mlogin.UserName,eorder.SumPrice,eorder.CommitTime,eorder.BookFitTime,eorder.OrderStatus) like ? ");
         $paging->setOrder(" eorder.OrderNum ");
         $paging->setDesc(" desc ");
         $listJson = $this->GetList($request, $paging);
@@ -71,13 +70,13 @@ class OrderController extends Controller
         try{
             EOrder::where("OrderID", $request->get("OrderID"))
                 ->update([
-//                    'Tel' => $request->get('txtTel'),
+                    'Tel' => $request->get('txtTel'),
                     'SumPrice' => $request->get('txtSumPrice'),
                     'AddressCD' => $request->get('selDistrict'),
                     'AddressDif' => $request->get('txtAddress'),
-                    'CommitTime' => $request->get('dateCommitTime')!=""?:Carbon::now(),
-                    'BookFitTime' => $request->get('dateBookFitTime')!=""?:Carbon::now(),
-                    'FinishTime' => $request->get('dateFinishTime')!=""?:Carbon::now(),
+                    'CommitTime' => ($request->get('dateCommitTime')?:Carbon::now()),
+                    'BookFitTime' => ($request->get('dateBookFitTime')?:Carbon::now()),
+                    'FinishTime' => ($request->get('dateFinishTime')?:Carbon::now()),
                     'OrderStatus' => $request->get('selOrderStatus'),
                     'Remark' => $request->get('txtRemark')
                 ]);
