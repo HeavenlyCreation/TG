@@ -20,134 +20,140 @@
     <!-- /.box-header -->
     <div class="form-horizontal">
         <div class="box-body">
-            <div class="form-group">
-                <label for="" class="col-sm-2 control-label">下单人</label>
-                <div class="col-sm-9">
-                    <input type="Name" class="form-control" id="txtName" value="{{ $order->Customer->User->Nickname or "" }}">
+            <form action="#" id="myForm">
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">下单人</label>
+                    <div class="col-sm-9">
+                        <input type="Name" class="form-control" id="txtName" name="txtName" value="{{ $order->Customer->User->Nickname or "" }}">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="" class="col-sm-2 control-label">订单产品</label>
-                <div class="col-sm-9">
-                    @if (count($order->OrderProduct) > 0)
-                    <div class="box">
-                        <div class="box-body no-padding">
-                            <table class="table table-striped">
-                                <tbody>
-                                <tr>
-                                    <th style="width: 10px">#</th>
-                                    <th>产品类别</th>
-                                    <th>产品名称</th>
-                                    <th>单价</th>
-                                    <th>数量</th>
-                                </tr>
-                                @foreach ($order->OrderProduct as $item)
-                                <tr>
-                                    <td>{{ $loop->index }}</td>
-                                    <td>{{ $item->Product->Category->CategoryName }}</td>
-                                    <td>{{ $item->Product->ProductName }}</td>
-                                    <td>{{ $item->Product->Price }}</td>
-                                    <td>{{ $item->Quantity }}</td>
-                                </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">订单产品</label>
+                    <div class="col-sm-9">
+                        @if (count($order->OrderProduct) > 0)
+                        <div class="box">
+                            <div class="box-body no-padding">
+                                <table class="table table-striped">
+                                    <tbody>
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>产品类别</th>
+                                        <th>产品名称</th>
+                                        <th>单价</th>
+                                        <th>数量</th>
+                                    </tr>
+                                    @foreach ($order->OrderProduct as $item)
+                                    <tr>
+                                        <td>{{ $loop->index }}</td>
+                                        <td>{{ $item->Product->Category->CategoryName }}</td>
+                                        <td>{{ $item->Product->ProductName }}</td>
+                                        <td>{{ $item->Product->Price }}</td>
+                                        <td>{{ $item->Quantity }}</td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
                         </div>
-                        <!-- /.box-body -->
+                        @endif
                     </div>
-                    @endif
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="" class="col-sm-2 control-label">联系电话</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="txtTel" value="{{ ($order->Customer->User->Tel or $order->Customer->User->Tel2) or "" }}">
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">联系电话</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="txtTel" name="txtTel" value="{{ ($order->Customer->User->Tel or $order->Customer->User->Tel2) or "" }}">
+                    </div>
+                    <label for="" class="col-sm-3 control-label">总金额</label>
+                    <div class="col-sm-3">
+                        <input type="SumPrice" class="form-control" id="txtSumPrice" name="txtSumPrice" value="{{ $order->SumPrice }}">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="" class="col-sm-2 control-label">安装地址</label>
-                <div class="col-sm-9">
-                    <select class="form-control" id="province">
-                    </select>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">安装地址</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="province">
+                            @foreach($province->data as $item)
+                                <option {{$item->AddressCD == $province->default?"selected":""}} value={{$item->AddressCD}}>{{$item->AddressName}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="city">
+                            @foreach($city->data as $item)
+                                <option {{$item->AddressCD == $city->default?"selected":""}} value={{$item->AddressCD}}>{{$item->AddressName}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="district" name="selDistrict">
+                            @foreach($district->data as $item)
+                                <option {{$item->AddressCD == $district->default?"selected":""}} value={{$item->AddressCD}}>{{$item->AddressName}}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                    <select class="form-control" id="city">
-                        <option>option 1</option>
-                        <option>option 2</option>
-                        <option>option 3</option>
-                        <option>option 4</option>
-                        <option>option 5</option>
-                    </select>
-
-                    <select class="form-control" id="district">
-                        <option>option 1</option>
-                        <option>option 2</option>
-                        <option>option 3</option>
-                        <option>option 4</option>
-                        <option>option 5</option>
-                    </select>
-
-                    <input type="text" class="form-control" id="txtAddress" value="{{ $order->AddressDif }}">
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="" class="col-sm-2 control-label">总金额</label>
-                <div class="col-sm-9">
-                    <input type="SumPrice" class="form-control" id="txtSumPrice" value="{{ $order->SumPrice }}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="" class="col-sm-2 control-label">提交时间</label>
-                <div class="col-sm-9">
-                    <div class="input-group date dtpicker col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_CommitTime">
-                        <input id="CommitTime" class="form-control" size="16" type="text" value="{{ $order->CommitTime }}" readonly>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label"></label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" id="txtAddress" name="txtAddress">{{ $order->AddressDif }}</textarea>
                     </div>
-                    <input type="hidden" id="dtp_CommitTime" value="" /><br/>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="" class="col-sm-2 control-label">预约时间</label>
-                <div class="col-sm-9">
-                    <div class="input-group date dtpicker col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_BookFitTime">
-                        <input id="BookFitTime" class="form-control" size="16" type="text" value="{{ $order->BookFitTime }}" readonly>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">提交时间</label>
+                    <div class="col-sm-3">
+                        <div class="input-group date dtpicker col-md-12" data-date="{{\Carbon\carbon::now()}}" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_CommitTime">
+                            <input id="CommitTime" class="form-control" size="16" type="text" value="{{ $order->CommitTime }}" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_CommitTime" name="dateCommitTime" value="" /><br/>
                     </div>
-                    <input type="hidden" id="dtp_BookFitTime" value="" /><br/>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="" class="col-sm-2 control-label">订单状态</label>
-                <div class="col-sm-9">
-                    <select class="form-control" id="OrderStatus">{{0==="ac"}}
-                        @foreach($orderStatus->get('data') as $status)
-                            <option {{$status->CodeKey === $orderStatus->get('default')?"selected":""}} value="{{$status->CodeKey}}">{{$status->CodeDesc}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="" class="col-sm-2 control-label">完成时间</label>
-                <div class="col-sm-9">
-                    <div class="input-group date dtpicker col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_FinishTime">
-                        <input id="FinishTime" class="form-control" size="16" type="text" value="{{ $order->FinishTime }}" readonly>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                    <label for="" class="col-sm-3 control-label">预约时间</label>
+                    <div class="col-sm-3">
+                        <div class="input-group date dtpicker col-md-12" data-date="{{\Carbon\carbon::now()}}" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_BookFitTime">
+                            <input id="BookFitTime" class="form-control" size="16" type="text" value="{{ $order->BookFitTime }}" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_BookFitTime" name="dateBookFitTime" value="" /><br/>
                     </div>
-                    <input type="hidden" id="dtp_FinishTime" value="" /><br/>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="" class="col-sm-2 control-label">备注</label>
-                <div class="col-sm-9">
-                    <textarea type="Remark" rows="3" class="form-control" id="txtRemark" value="{{ $order["Remark"] }}"></textarea>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">订单状态</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="OrderStatus" name="selOrderStatus">
+                            @foreach($orderStatus->data as $item)
+                                <option {{$item->CodeCD === $orderStatus->default?"selected":""}} value={{$item->CodeCD}}>{{$item->CodeDesc}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <label for="" class="col-sm-3 control-label">完成时间</label>
+                    <div class="col-sm-3">
+                        <div class="input-group date dtpicker col-md-12" data-date="{{\Carbon\carbon::now()}}" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_FinishTime">
+                            <input id="FinishTime" class="form-control" size="16" type="text" value="{{ $order->FinishTime }}" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_FinishTime" name="dateFinishTime" value="" /><br/>
+                    </div>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">备注</label>
+                    <div class="col-sm-9">
+                        <textarea type="Remark" rows="3" class="form-control" id="txtRemark" name="txtRemark" value="{{ $order["Remark"] }}"></textarea>
+                    </div>
+                </div>
+            </form>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-            <button type="submit" class="btn btn-default pull-right" onclick="history.back();">返回</button>
+            <div class="pull-right">
+                <button type="button" class="btn btn-default" onclick="location.href='/Order/List'">返回</button>
+                <button type="submit" class="btn btn-primary btn-save">保存</button>
+            </div>
         </div>
     </div>
 </div>
@@ -157,7 +163,56 @@
 @section("footer")
     <script src="{{asset("/plugin/datetimepicker/js/bootstrap-datetimepicker.js")}}"></script>
     <script src="{{asset("/plugin/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js")}}"></script>
+    <script src="{{asset("/js/jquery.form.js")}}"></script>
     <script type="text/javascript">
+    // 省-市-区 下拉框联动
+    var html = '';
+    $(document).ready(function(){
+        // 改变省，市改变
+        $('#province').change(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/Order/GetAddress',
+                data: {'AddressCD': $(this).val(), 'level': 2, '_token': '{{ csrf_token() }}'},
+                success: function (json) {
+                    html = '';
+                    $.each(json.data, function(i, n){
+                        html += "<option "+(n.AddressCD == json.default?"selected":"")+" value='"+n.AddressCD+"'>"+n.AddressName+"</option>";
+                    });
+                    $('#city').html(html);
+                    $('#district').html('').val('');
+                }
+            });
+        });
+        // 改变市，区改变
+        $('#city').change(function () {
+            $.post(
+                '/Order/GetAddress',
+                {'AddressCD': $(this).val(), 'level': 3, '_token': '{{ csrf_token() }}'},
+                function (json) {
+                    html = '';
+                    $.each(json.data, function(i, n){
+                        html += "<option "+(n.AddressCD == json.default?"selected":"")+" value='"+n.AddressCD+"'>"+n.AddressName+"</option>";
+                    });
+                    $('#district').html(html);
+                });
+        });
+    });
+
+    // 提交编辑保存
+    $('.btn-save').click(function() {
+        // bind 'myForm' and provide a simple callback function
+        $('#myForm').ajaxSubmit({
+            url: '/Order/Edit',
+            type: 'POST',
+            data: {'OrderID': '{{ $order->OrderID }}'},
+            success: function(data){
+                alert(data);
+            }
+        });
+    });
+
+    // 日期控件初始化
     $('.dtpicker').datetimepicker({
         language:  'zh-CN',
         weekStart: 1,
@@ -168,6 +223,5 @@
         forceParse: 0,
         showMeridian: 1
     });
-    $()
     </script>
 @stop

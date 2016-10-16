@@ -269,7 +269,7 @@ desired effect
                 <li class="header">菜单</li>
                 <!-- Optionally, you can add icons to the links -->
                 <li class={{ isset($act) && $act=="worker"?"active":"#" }}>
-                    <a href="/Worker/List"><i class="fa fa-wrench"></i><span>工人信息管理</span></a>
+                    <a href="/Worker/List"><i class="fa fa-users"></i><span>工人信息管理</span></a>
                 </li>
                 <li class="treeview {{ isset($act) && $act=="product"?"active":"" }}">
                     <a href="#"><i class="fa fa-rmb"></i> <span>服务信息管理</span>
@@ -323,10 +323,10 @@ desired effect
     <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-            Anything you want
+            Do you want to do!
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2016 <a href="#">TG Studio</a>.</strong> All rights reserved.
     </footer>
 
     <!-- Control Sidebar -->

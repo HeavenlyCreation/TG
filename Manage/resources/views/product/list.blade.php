@@ -17,16 +17,18 @@
                         <thead>
                         <tr>
                             <th>ID</th>
+                            <th>产品名称</th>
                             <th>产品类别</th>
-                            <th>上级类别</th>
+                            <th>价格</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
                             <th>ID</th>
+                            <th>产品名称</th>
                             <th>产品类别</th>
-                            <th>上级类别</th>
+                            <th>价格</th>
                             <th>操作</th>
                         </tr>
                         </tfoot>
@@ -51,7 +53,7 @@
     $(function () {
         $('#example1').dataTable({
             ajax: {
-                "url": "/ProductCategory/List",
+                "url": "/Product/List",
                 "data": {
                     "_token": "{{ csrf_token() }}"
                 },
@@ -60,9 +62,10 @@
                 }
             },
             columns: [
-                { "data": "ProductCategoryID" },
+                { "data": "ProductID" },
+                { "data": "ProductName" },
                 { "data": "CategoryName" },
-                { "data": "FCategoryName" },
+                { "data": "Price" },
                 { "data": "" }
             ],
             columnDefs: [
@@ -74,8 +77,8 @@
                 {
                     "targets": -1,
                     "render": function(data, type, row){
-                        return "<span style='margin-right:14px;'><a href='{{url('ProductCategory/Detail/')}}/"+row.ProductCategoryID+"'><i class='fa fa-file-text-o'></i></a></span>"
-                                +"<span style='margin-right:14px;'><a href='{{url('ProductCategory/Edit/')}}/"+row.ProductCategoryID+"'><i class='fa fa-edit'></i></a></span>";
+                        return "<span style='margin-right:14px;'><a href='{{url('Product/Detail/')}}/"+row.ProductID+"'><i class='fa fa-file-text-o'></i></a></span>"
+                                +"<span style='margin-right:14px;'><a href='{{url('Product/Edit/')}}/"+row.ProductID+"'><i class='fa fa-edit'></i></a></span>";
                                 {{--+"<span><a href='{{url('Order/Detail/')}}/"+row.OrderID+"'><i class='fa fa-remove'></i></a></span>";--}}
                     }
                 }

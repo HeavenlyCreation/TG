@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Fluent;
 use App\Http\Requests;
 use App\MProductCategory;
 use App\Http\Lib\DT\Paging;
+use App\Http\Lib\Helper\DropHelper;
 
 class ProductCategoryController extends Controller
 {
@@ -36,6 +37,33 @@ class ProductCategoryController extends Controller
      */
     public function Detail($productCategoryID){
         $productCategory = MProductCategory::where("ProductCategoryID", $productCategoryID)->firstOrFail();
-        return view('category.detail', ["pageHeader"=>"服务类别详细信息", "act"=>"product", "product"=>$productCategory]);
+        return view('category.detail', ["pageHeader"=>"服务类别详细信息", "act"=>"product", "category"=>$productCategory]);
+    }
+
+    /*
+     * 编辑页
+     */
+    public function Edit($productCategoryID){
+        $productCategory = MProductCategory::where("ProductCategoryID", $productCategoryID)->firstOrFail();
+        $drop = new DropHelper();
+        $categorys = $drop->DropCategory($productCategory->ParentID);
+        return view('category.edit', ["pageHeader"=>"服务类别详细信息", "act"=>"product", "category"=>$productCategory, "categorys"=>$categorys]);
+    }
+
+    /*
+     * 编辑页保存
+     */
+    public function EditSave(Request $request){
+        try{
+            MProductCategory::where("ProductCategoryID", $request->get("productCategoryID"))
+                ->update([
+                    'CategoryName' => $request->get('txtCategoryName'),
+                    'ParentID' => $request->get('selCategorys'),
+                    'CreatedTime' => $request->get('dateCreatedTime')
+                ]);
+        }catch (\Exception $e){
+            return "修改失败";
+        }
+        return "修改成功";
     }
 }

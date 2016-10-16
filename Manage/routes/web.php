@@ -26,7 +26,8 @@ Route::get('/Order/List', 'OrderController@ListPage');
 Route::post('/Order/List', 'OrderController@ListData');
 Route::get('/Order/Detail/{orderID}', 'OrderController@Detail');
 Route::get('/Order/Edit/{orderID}', 'OrderController@Edit');
-Route::post('/Order/DropStatus/{codeKey}', 'OrderController@DropStatus');
+Route::post('/Order/Edit', 'OrderController@EditSave');
+Route::post('/Order/GetAddress', 'OrderController@GetAddress');
 
 // 工人管理
 Route::get('/Worker/List', 'WorkerController@ListPage');
@@ -40,11 +41,14 @@ Route::get('/ProductCategory/List', 'ProductCategoryController@ListPage');
 Route::post('/ProductCategory/List', 'ProductCategoryController@ListData');
 Route::get('/ProductCategory/Detail/{productCategoryID}', 'ProductCategoryController@Detail');
 Route::get('/ProductCategory/Edit/{productCategoryID}', 'ProductCategoryController@Edit');
+Route::post('/ProductCategory/Edit', 'ProductCategoryController@EditSave');
 // 服务信息
 Route::get('/Product/List', 'ProductController@ListPage');
 Route::post('/Product/List', 'ProductController@ListData');
 Route::get('/Product/Detail/{productID}', 'ProductController@Detail');
 Route::get('/Product/Edit/{productID}', 'ProductController@Edit');
+Route::post('/Product/Edit', 'ProductController@EditSave');
+
 
 
 
