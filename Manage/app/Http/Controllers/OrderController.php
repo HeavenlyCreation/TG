@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Lib\DT\Paging;
 use App\EOrder;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -90,5 +91,45 @@ class OrderController extends Controller
         $drop = new DropHelper();
         $address = $drop->DropAddress($request->AddressCD, $request->level);  // 地址下拉框
         return $address;        
+    }
+
+    /*
+     * 下单页
+     */
+    public function Add(){
+        $drop = new DropHelper();
+        $orderStatus = $drop->DropStatus("");  // 订单状态下拉框
+        $province = $drop->DropAddress("", 1);  // 地址-省下拉框
+        return view('order.add', [
+            "pageHeader"=>"下单", 
+            "act"=>"order",
+            "orderStatus"=>$orderStatus,
+            "province"=>$province
+        ]);
+    }
+
+    /*
+     * 下单页保存
+     */
+    public function AddSave(Request $request){
+        try{
+            $user = Auth::user();
+            EOrder::insert([
+                'LoginID' => $user->LoginID,
+                'OrderNum' => 'TJ'.time(),
+                'Tel' => $request->get('txtTel'),
+                'SumPrice' => $request->get('txtSumPrice'),
+                'AddressCD' => $request->get('selDistrict'),
+                'AddressDif' => $request->get('txtAddress'),
+                'CommitTime' => ($request->get('dateCommitTime')?:Carbon::now()),
+                'BookFitTime' => ($request->get('dateBookFitTime')?:Carbon::now()),
+                'FinishTime' => ($request->get('dateFinishTime')?:Carbon::now()),
+                'OrderStatus' => $request->get('selOrderStatus'),
+                'Remark' => $request->get('txtRemark')
+            ]);
+        }catch (\Exception $e){
+            return "1";     //插入失败
+        }
+        return "0";     //插入成功
     }
 }

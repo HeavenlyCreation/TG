@@ -278,12 +278,20 @@ desired effect
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/ProductCategory/List">服务类别</a></li>
-                        <li><a href="/Product/List">服务信息</a></li>
+                        <li><a href="/ProductCategory/List"><i class="fa fa-circle-o"></i> 服务类别</a></li>
+                        <li><a href="/Product/List"><i class="fa fa-circle-o"></i> 服务信息</a></li>
                     </ul>
                 </li>
-                <li class={{ isset($act) && $act=="order"?"active":"#" }}>
-                    <a href="/Order/List"><i class="fa fa-files-o"></i> <span>订单信息管理</span></a>
+                <li class="treeview {{ isset($act) && $act=="order"?"active":"" }}">
+                    <a href="#"><i class="fa fa-files-o"></i> <span>订单信息管理</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/Order/List"><i class="fa fa-circle-o"></i> 订单管理</a></li>
+                        <li><a href="/Order/Add"><i class="fa fa-circle-o"></i> 下单</a></li>
+                    </ul>
                 </li>
                 <li class={{ isset($act) && $act=="setup"?"active":"#" }}>
                     <a href="/Setup"><i class="fa fa-gear"></i><span>系统设置</span></a>

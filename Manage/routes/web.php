@@ -28,6 +28,8 @@ Route::get('/Order/Detail/{orderID}', 'OrderController@Detail');
 Route::get('/Order/Edit/{orderID}', 'OrderController@Edit');
 Route::post('/Order/Edit', 'OrderController@EditSave');
 Route::post('/Order/GetAddress', 'OrderController@GetAddress');
+Route::get('/Order/Add', 'OrderController@Add');
+Route::post('/Order/Add', 'OrderController@AddSave');
 
 // 工人管理
 Route::get('/Worker/List', 'WorkerController@ListPage');

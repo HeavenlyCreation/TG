@@ -5,6 +5,9 @@
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{{asset("plugin/font-awesome/css/font-awesome.min.css")}}">
+
         <style>
             html, body {
                 height: 100%;
@@ -40,7 +43,10 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">There's a problem, but someone is fixing it.</div>
+                <div class="title">
+                    There's a problem, <br/> but someone is fixing it. <br/>
+                    <a href="/"><i class="fa fa-fast-backward"></i> BACK</a>
+                </div>
             </div>
         </div>
     </body>
