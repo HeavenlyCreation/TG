@@ -157,7 +157,7 @@
         </div>
     </div>
 
-    
+
     <!--Modal-->
     <div id="myModal">
         <div class="modal modal-info fade">
