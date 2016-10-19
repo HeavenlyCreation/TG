@@ -16,4 +16,7 @@ $app->get('/', function () use ($app) {
 });
 
 
-$app->get('/example', 'ExampleController@test');
+// $app->get('/example', 'ExampleController@test');
+$app->get('/example', function () {
+    return view('example');
+});
