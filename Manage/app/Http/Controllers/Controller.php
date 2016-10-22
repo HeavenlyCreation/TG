@@ -33,7 +33,7 @@ class Controller extends BaseController
         $count = DB::connection()->select($sqls)[0]->Total;
         $sqls = "select ".$paging->getSelect()." from ".$paging->getFrom()." where 1=1 ";
         // 搜索
-        if(!empty($search)){
+        if(!empty( $paging->getWhere() )){
             $sqls .= " and ".$paging->getWhere();
             $args = ["%".$search."%"];
         }

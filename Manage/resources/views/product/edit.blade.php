@@ -55,7 +55,7 @@
                 <label for="" class="col-sm-2 control-label">创建时间</label>
                 <div class="col-sm-9">
                     <div class="input-group date dtpicker col-md-5" data-date="{{\Carbon\carbon::now()}}" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_CreatedTime">
-                        <input id="dateCreatedTime" class="form-control" size="16" type="text" value="{{ $product->CreatedTime }}" readonly>
+                        <input id="dateCreatedTime" class="form-control" size="16" type="text" value="{{ $product->CreatedTime or \Carbon\carbon::now() }}" readonly>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                     </div>
@@ -93,15 +93,15 @@
         });
     });
 
-    $('.dtpicker').datetimepicker({
-        language:  'zh-CN',
-        weekStart: 1,
-        todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 2,
-        forceParse: 0,
-        showMeridian: 1
-    });
+//    $('.dtpicker').datetimepicker({
+//        language:  'zh-CN',
+//        weekStart: 1,
+//        todayBtn:  1,
+//        autoclose: 1,
+//        todayHighlight: 1,
+//        startView: 2,
+//        forceParse: 0,
+//        showMeridian: 1
+//    });
     </script>
 @stop

@@ -5,7 +5,7 @@
 <div class="box box-default">
     <div class="box-header with-border">
         <h3 class="box-title">
-            {{ $worker->User->Name }}
+            {{ $worker->Name }}
         </h3>
 
         <div class="box-tools pull-right">
@@ -31,8 +31,8 @@
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">电话号码</label>
                 <div class="col-sm-9">
-                    <label for="" class="control-label">{{ $worker->User->Tel or "" }}</label><br/>
-                    <label for="" class="control-label">{{ $worker->User->Tel2 or "" }}</label>
+                    <label for="" class="control-label">{{ $worker->Tel or "" }}</label><br/>
+                    <label for="" class="control-label">{{ $worker->Tel2 or "" }}</label>
                 </div>
             </div>
             <div class="form-group">
@@ -44,7 +44,8 @@
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">所在地区</label>
                 <div class="col-sm-9">
-                    <label for="" class="control-label">{{ $worker->Address->AddressName or "" }}
+                    <label for="" class="control-label">
+                        {{--{{ $worker->Address->AddressName or "" }}--}}
                     <br>{{ $worker->AddressDif or "" }}</label>
                 </div>
             </div>

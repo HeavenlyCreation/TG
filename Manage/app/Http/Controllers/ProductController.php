@@ -53,18 +53,47 @@ class ProductController extends Controller
      * 编辑页保存
      */
     public function EditSave(Request $request){
+        $IsNew = empty($request->get("ProductID"));
         try{
-            MProduct::where("ProductID", $request->get("ProductID"))
-                ->update([
+            if ($IsNew){
+                MProduct::insert([
                     'ProductName' => $request->get('txtProductName'),
-                    'ProductCategoryID' => $request->get('selCategorys'),
-                    'Price' => $request->get('txtPrice'),
+                    'ProductCategoryID' => intval($request->get('selCategorys')),
+                    'Price' => doubleval($request->get('txtPrice')),
                     'Remark' => $request->get('txtRemark'),
-                    'CreatedTime' => $request->get('dateCreatedTime')??Carbon::now()
+                    'CreatedTime' => Carbon::now()
                 ]);
+            }else{
+                MProduct::where("ProductID", $request->get("ProductID"))
+                    ->update([
+                        'ProductName' => $request->get('txtProductName'),
+                        'ProductCategoryID' => $request->get('selCategorys'),
+                        'Price' => $request->get('txtPrice'),
+                        'Remark' => $request->get('txtRemark'),
+                        'CreatedTime' => Carbon::now()
+                    ]);
+            }
         }catch (\Exception $e){
-            return "修改失败";
+            return $IsNew ? "添加失败" : "修改失败";
         }
-        return "修改成功";
+        return $IsNew ? "添加成功" : "修改成功";
+    }
+
+    public function Add(){
+        $product = new MProduct();
+        $drop = new DropHelper();
+        $categorys = $drop->DropCategory("");
+        return view('product.edit', ["pageHeader"=>"服务详细信息", "act"=>"product", "product"=>$product, "categorys"=>$categorys]);
+    }
+
+    public function Del($productId){
+        try{
+            $productId = MProduct::where("OrderId", $productId)->firstOrFail();
+            $productId->Status = -1;
+            $productId->save();
+        }catch (\Exception $e){
+            return "删除失败";
+        }
+        return "删除成功";
     }
 }

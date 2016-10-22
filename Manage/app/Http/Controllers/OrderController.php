@@ -132,4 +132,15 @@ class OrderController extends Controller
         }
         return "0";     //插入成功
     }
+
+    public function Del($orderId){
+        try{
+            $order = EOrder::where("OrderId", $orderId)->firstOrFail();
+            $order->Status = -1;
+            $order->save();
+        }catch (\Exception $e){
+            return "删除失败";
+        }
+        return "删除成功";
+    }
 }
