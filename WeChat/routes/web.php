@@ -11,12 +11,11 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return $app->version();
-});
+$app->get('/', 'IndexController@Index');
 
 
 // $app->get('/example', 'ExampleController@test');
-$app->get('/example', function () {
-    return view('example');
+
+$app->get('/ProductList', function () {
+    return view('Custom.ProductList');
 });

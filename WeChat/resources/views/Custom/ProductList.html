@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title></title>
+    <link rel="stylesheet" href="css/weui.css"/>
+    <link rel="stylesheet" href="css/example.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+
+<body>
+<div id="app">
+    <div class="page__hd">
+        <h1 class="page__title">Panel</h1>
+        <p class="page__desc">面板</p>
+    </div>
+    <div class="page__bd">
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__hd">文字组合列表</div>
+            <div class="weui-panel__bd">
+                <div class="weui-media-box weui-media-box_text">
+                    <h4 class="weui-media-box__title">标题一</h4>
+                    <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                </div>
+                <div class="weui-media-box weui-media-box_text">
+                    <h4 class="weui-media-box__title">标题二</h4>
+                    <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                </div>
+            </div>
+            <div class="weui-panel__ft">
+                <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
+                    <div class="weui-cell__bd">查看更多</div>
+                    <span class="weui-cell__ft"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<template id="grid-template">
+    <table>
+        <thead>
+        <tr>
+            <th v-for="col in columns">
+                {{ col }}
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="entry in dataList">
+            <td v-for="col in columns">
+                {{ entry[col] }}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!--    {{ abc }}-->
+</template>
+
+<script src="js/vue/vue.js"></script>
+<script src="js/vue-resource/vue-resource.js"></script>
+<script>
+    Vue.config.devtools = true
+    Vue.component('simple-grid', {
+        template: '#grid-template',
+        props: ['dataList', 'columns']
+    })
+</script>
+<script>
+    var demo = new Vue({
+        el: '#app',
+        data: {
+            gridColumns: ['customerId', 'companyName', 'contactName', 'phone'],
+            gridData: [],
+            apiUrl: 'http://211.149.193.19:8080/api/customers',
+            nextTxt: '',
+            selected: '0'
+        },
+        mounted: function () {
+            this.getCustomers()
+        },
+        methods: {
+            getCustomers: function () {
+                this.$http.get(this.apiUrl)
+                        .then((response) => {
+                    this.$set(this, 'gridData', response.data)
+            }).catch(function (response) {
+                    console.log(response)
+                })
+            },
+//            changeBut: function () {
+//
+//            }
+        },
+        watch: {
+            selected: function(val) {
+                this.nextTxt = val == "1" ? "我要下单" : "我要接单" ;
+            }
+        }
+    })
+</script>
+</body>
+
+</html>
