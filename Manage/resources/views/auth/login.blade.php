@@ -60,4 +60,14 @@
         </div>
     </div>
 </div>
+<div id="footer" class="container">
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="navbar-inner navbar-content-center">
+            <p class="text-muted credit" style="padding: 10px;text-align: center;">
+                <a href="http://www.miitbeian.gov.cn/">京ICP备16068411号</a>
+            </p>
+        </div>
+    </nav>
+</div>
+
 @endsection

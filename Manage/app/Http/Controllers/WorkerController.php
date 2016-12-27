@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Lib\DT\Paging;
 use DB;
 use App\MUser;
+use App\MLogin;
 use Crypt;
 
 class WorkerController extends Controller
@@ -19,8 +20,11 @@ class WorkerController extends Controller
     public function ListData(Request $request)
     {
         $paging = new Paging();
-        $paging->setSelect(" u.UserID,u.JobNumber,u.Name,u.Tel,u.Tel2,u.WxCD,ar.AddressName,u.AddressDif,u.WorkStatus ");
-        $paging->setFrom(" MUser u inner join Mlogin l on u.LoginId=l.LoginId AND UserTypeCD='UserType-1' left join MAddress ar on ar.AddressCD=u.AddressCD ");
+        $paging->setSelect(" u.UserID,u.JobNumber,u.Name,u.Tel,u.Tel2,u.WxCD,ar.AddressName,u.AddressDif,c.CodeDesc as WorkStatus ");
+        $paging->setFrom(" MUser u 
+right join Mlogin l on u.LoginId=l.LoginId AND l.UserTypeCD='ut_Worker'
+left join MAddress ar on ar.AddressCD=u.AddressCD
+left join mcode c on c.CodeCD=u.WorkStatus");
         $paging->setWhere(" u.Status>-1 AND CONCAT_WS(',',u.JobNumber,u.Name) like ? ");
         $paging->setOrder(" u.Name ");
         $paging->setDesc(" asc ");
@@ -42,7 +46,7 @@ class WorkerController extends Controller
 
     public function Add()
     {
-        return view("Worker.Edit", ["pageHeader" => "工人修改", "act" => "worker", "worker" => new MUser()]);
+        return view("Worker.Edit", ["pageHeader" => "工人添加", "act" => "worker", "worker" => new MUser()]);
     }
 
     public function SaveData()
@@ -50,8 +54,12 @@ class WorkerController extends Controller
         try{
             if(!isset($_POST["workerID"])){
                 DB::transaction(function () {
+                    $account = MLogin::where("UserName", $_POST["UserName"])->firstOrFail();
+                    if ($account != null){
+                        return $this->JSONResult(null,"登录账户名已存在","fail");
+                    }
                     $LoginID = DB::table('mlogin')->insertGetId(
-                        ['UserName' => $_POST["UserName"], 'Password' => bcrypt("123456"), 'UserTypeCD'=>"UserType-1"]
+                        ['UserName' => $_POST["UserName"], 'Password' => bcrypt("123456"), 'UserTypeCD'=>"ut_Worker"]
                     );
                     MUser::insert([
                         'Name' => $_POST["WorkerName"],
@@ -79,9 +87,10 @@ class WorkerController extends Controller
                 $worker->save();
             }
         }catch (\Exception $e){
-            return "修改失败";
+            return $this->JSONResult(null,"修改失败","fail");
         }
-        return "修改成功";
+
+        return $this->JSONResult(null,"修改成功");
     }
 
     public function Del($workerId)
@@ -91,8 +100,8 @@ class WorkerController extends Controller
             $worker->Status = -1;
             $worker->save();
         } catch (\Exception $e) {
-            return "删除失败";
+            return $this->JSONResult(null,"删除失败");
         }
-        return "删除成功";
+        return $this->JSONResult(null,"删除成功");
     }
 }

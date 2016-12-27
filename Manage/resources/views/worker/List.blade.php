@@ -98,19 +98,6 @@
                                     + "<span style='margin-right:14px;'><a href='{{url('Worker/Edit/')}}/" + row.UserID + "'><i class='fa fa-edit'></i></a></span>"
                                     + "<span style='margin-right:14px;'><a href='javascript:removeWorker(" + row.UserID + ")'><i class='fa fa-remove'></i></a></span>";
                         }
-                    },
-                    {
-                        "targets": -2,
-                        "render": function (data, type, row) {
-                            switch (row.WorkStatus) {
-                                case 0:
-                                    return "正常工作";
-                                case 1:
-                                    return "休息";
-                                default:
-                                    return "正常工作";
-                            }
-                        }
                     }
                 ]
             });
@@ -124,8 +111,9 @@
                 type: "post",
                 url: "{{url('Worker/Del/')}}/" + workerId,
                 data: {"_token": "{{ csrf_token() }}"},
+                dataType:"json",
                 success: function (data) {
-                    alert(data);
+                    alert(data.mess);
                     $("#example1").dataTable().fnDraw(false);
                 }
             });

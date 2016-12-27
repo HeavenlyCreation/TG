@@ -15,7 +15,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth:web');
     }
 
@@ -25,28 +26,29 @@ class Controller extends BaseController
      * @param Paging $paging
      * @return string
      */
-    public function GetList(Request $request, Paging $paging){
+    public function GetList(Request $request, Paging $paging)
+    {
         $search = $request->get("search")["value"]; // 搜索输入值
         $args = [];  //Sql参数
         // 显示的合计条数
-        $sqls = "select count(1) as Total from ".$paging->getFrom()." where 1=1 ";
+        $sqls = "select count(1) as Total from " . $paging->getFrom() . " where 1=1 ";
         $count = DB::connection()->select($sqls)[0]->Total;
-        $sqls = "select ".$paging->getSelect()." from ".$paging->getFrom()." where 1=1 ";
+        $sqls = "select " . $paging->getSelect() . " from " . $paging->getFrom() . " where 1=1 ";
         // 搜索
-        if(!empty( $paging->getWhere() )){
-            $sqls .= " and ".$paging->getWhere();
-            $args = ["%".$search."%"];
+        if (!empty($paging->getWhere())) {
+            $sqls .= " and " . $paging->getWhere();
+            $args = ["%" . $search . "%"];
         }
         // 排序
-        if(empty($paging->getOrder()) || $request->get("order")[0]["column"]>0){
+        if (empty($paging->getOrder()) || $request->get("order")[0]["column"] > 0) {
             $sort = $request->get("columns")[$request->get("order")[0]["column"]]["data"];
             $desc = $request->get("order")[0]["dir"];
-            $sqls .= " order by ".$sort." ".$desc;
-        }else{
-            $sqls .= " order by ".$paging->getOrder()." ".(empty($paging->getDesc()) ? $paging->getDesc() : "");
+            $sqls .= " order by " . $sort . " " . $desc;
+        } else {
+            $sqls .= " order by " . $paging->getOrder() . " " . (empty($paging->getDesc()) ? $paging->getDesc() : "");
         }
         // 按显示条数limit
-        $sqls .= " limit ".$request->get("start").",".$request->get("length");
+        $sqls .= " limit " . $request->get("start") . "," . $request->get("length");
         $list = DB::connection()->select($sqls, $args);
         // 序列化一个包含Array的自定义对象
         $obj = new Fluent([
@@ -56,6 +58,21 @@ class Controller extends BaseController
             "data" => $list
         ]);
         // 转换为Json
+        return $obj->toJson();
+    }
+
+    public function JSONResult($data, $mess="",$status="success")
+    {
+        $result = array("status" => $status, "mess" => $mess);
+        if (is_array($data) || is_string($data)) {
+            $result["data"] = array();
+            foreach ($data as $key => $value) {
+                $result["data"][$key] = $value;
+            }
+        } else {
+            $result["data"] = $data;
+        }
+        $obj = new Fluent($result);
         return $obj->toJson();
     }
 }

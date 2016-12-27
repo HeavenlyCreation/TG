@@ -76,20 +76,22 @@
     <script src="{{asset("/plugin/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js")}}"></script>
     <script src="{{asset("/js/jquery.form.js")}}"></script>
     <script type="text/javascript">
-    $("#btnSubmit").on("click",function(){
-        $('#formData').ajaxSubmit({
-            type:"post",
-            url:"/Worker/Edit",
-            data:{},
-            success:function(data){
-                alert(data);
-                if(data=="修改成功"){
-                    location.href="/Worker/List";
+        $("#btnSubmit").on("click",function(){
+            $('#formData').ajaxSubmit({
+                type:"post",
+                url:"/Worker/Edit",
+                data:{},
+                dataType:"json",
+                success:function(data){
+                    if(data.status=="success"){
+                        location.href="/Worker/List";
+                    }else{
+                        alert(data.mess);
+                    }
                 }
-            }
+            });
+            return false;
         });
-        return false;
-    });
     </script>
 
 @stop
