@@ -52,16 +52,16 @@
                     </div>
                 </div>
                 <div class="form-group">
-                <label for="" class="col-sm-2 control-label">创建时间</label>
-                <div class="col-sm-9">
-                    <div class="input-group date dtpicker col-md-5" data-date="{{\Carbon\carbon::now()}}" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_CreatedTime">
-                        <input id="dateCreatedTime" class="form-control" size="16" type="text" value="{{ $product->CreatedTime or \Carbon\carbon::now() }}" readonly>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                    <label for="" class="col-sm-2 control-label">创建时间</label>
+                    <div class="col-sm-9">
+                        <div class="input-group date dtpicker col-md-5" data-date="{{\Carbon\carbon::now()}}" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_CreatedTime">
+                            <input id="dateCreatedTime" class="form-control" size="16" type="text" value="{{ $product->CreatedTime or \Carbon\carbon::now() }}" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_CreatedTime" name="dateCreatedTime"  value="" /><br/>
                     </div>
-                    <input type="hidden" id="dtp_CreatedTime" name="dateCreatedTime"  value="" /><br/>
                 </div>
-            </div>
             </form>
         </div>
         <!-- /.box-body -->
@@ -87,8 +87,13 @@
             url: '/Product/Edit',
             type: 'POST',
             data: {'ProductID': '{{ $product->ProductID }}'},
+            dataType:"json",
             success: function(data){
-                alert(data);
+                if(data.status=="success"){
+                    location.href="/Product/List";
+                }else{
+                    alert(data.mess);
+                }
             }
         });
     });

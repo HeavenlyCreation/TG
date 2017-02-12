@@ -71,9 +71,9 @@ class ProductCategoryController extends Controller
         try {
             DB::update('UPDATE MProductCategory SET Status=-1 WHERE ProductCategoryID=? OR ParentID=?', [$productCategoryID, $productCategoryID]);
         } catch (\Exception $e) {
-            return "删除失败";
+            return $this->JSONResult(null, "删除失败");
         }
-        return "删除成功";
+        return $this->JSONResult(null, "删除成功");
     }
 
     /*
@@ -98,8 +98,8 @@ class ProductCategoryController extends Controller
                     ]);
             }
         } catch (\Exception $e) {
-            return $IsNew ? "添加失败" : "修改失败";
+            return $this->JSONResult(null, $IsNew ? "添加成功" : "修改成功");
         }
-        return $IsNew ? "添加成功" : "修改成功";
+        return $this->JSONResult(null, $IsNew ? "添加失败" : "修改失败", "fail");
     }
 }

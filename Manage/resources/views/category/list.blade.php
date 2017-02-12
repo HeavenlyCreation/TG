@@ -106,7 +106,9 @@
             url: "{{url('ProductCategory/Del/')}}/" + ProductCategoryID,
             data: {"_token": "{{ csrf_token() }}"},
             success: function (data) {
-                alert(data);
+                if(data.status != "success"){
+                    alert(data.mess);
+                }
                 $("#example1").dataTable().fnDraw(false);
             }
         });

@@ -22,7 +22,8 @@ class DropHelper
      */
     public function DropCategory($CategoryID){
         $category = MProductCategory::select("ParentID","ProductCategoryID","CategoryName")
-            ->orderby("ParentID","ProductCategoryID")
+            ->where("Status",'>',-1)
+            ->orderby("CategoryName","desc")
             ->get();
         $drop = new Fluent([
             "default"=> $CategoryID,

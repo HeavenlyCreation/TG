@@ -13,6 +13,7 @@
                         <a href="/Product/Add" class="btn btn-default">新增</a>
                     </div>
                 </div>
+                {{date('YmdHis')}}
                 <!-- /.box-header -->
                 <div class="box-body">
                     <table id="example1" class="table table-bordered table-striped" cellspacing="0" width="100%">

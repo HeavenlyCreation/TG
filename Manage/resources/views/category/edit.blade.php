@@ -82,7 +82,11 @@
                 type: 'POST',
                 data: {'productCategoryID': '{{ $category->ProductCategoryID }}'},
                 success: function (data) {
-                    alert(data);
+                    if(data.status!="success"){
+                        alert(data.mess);
+                    }else{
+                        location.href="/ProductCategory/List";
+                    }
                 }
             });
         });

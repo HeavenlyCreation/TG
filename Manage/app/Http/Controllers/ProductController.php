@@ -74,9 +74,9 @@ class ProductController extends Controller
                     ]);
             }
         }catch (\Exception $e){
-            return $IsNew ? "添加失败" : "修改失败";
+            return $this->JSONResult(null,$IsNew ? "添加失败" : "修改失败","fail");
         }
-        return $IsNew ? "添加成功" : "修改成功";
+        return $this->JSONResult(null,$IsNew ? "添加成功" : "修改成功");
     }
 
     public function Add(){
@@ -92,8 +92,8 @@ class ProductController extends Controller
             $productId->Status = -1;
             $productId->save();
         }catch (\Exception $e){
-            return "删除失败";
+            return $this->JSONResult(null,"删除失败","fail");
         }
-        return "删除成功";
+        return $this->JSONResult(null,"删除成功");
     }
 }
