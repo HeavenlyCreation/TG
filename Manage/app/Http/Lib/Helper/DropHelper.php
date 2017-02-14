@@ -23,7 +23,7 @@ class DropHelper
     public function DropCategory($CategoryID){
         $category = MProductCategory::select("ParentID","ProductCategoryID","CategoryName")
             ->where("Status",'>',-1)
-            ->orderby("CategoryName","desc")
+            ->orderByRaw("convert(CategoryName using gbk)","desc")
             ->get();
         $drop = new Fluent([
             "default"=> $CategoryID,
@@ -39,7 +39,7 @@ class DropHelper
     public function DropStatus($CodeCD){
         $code = MCode::select("CodeCD", "CodeDesc")
             ->where("CodeType", "OrderStatus")
-            ->orderby("Sort")
+            ->orderBy("Sort")
             ->get();
         $drop = new Fluent([
             "default"=> $CodeCD,

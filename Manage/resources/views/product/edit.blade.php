@@ -11,11 +11,6 @@
         <h3 class="box-title">
             {{ $product->ProductName }}
         </h3>
-
-        <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-        </div>
     </div>
     <!-- /.box-header -->
     <div class="form-horizontal">
@@ -39,10 +34,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">价格</label>
-                    <label for="" class="col-sm-1 control-label">￥</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="txtPrice" name="txtPrice" value="{{ $product->Price or "" }}">
+                    <label for="" class="col-sm-2 control-label">价格（￥）</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control col-sm-11" id="txtPrice" name="txtPrice" value="{{ $product->Price or "" }}">
                     </div>
                 </div>
                 <div class="form-group">
@@ -73,10 +67,15 @@
         </div>
     </div>
 </div>
+
 <!-- /.box -->
 @stop
 
 @section("footer")
+<script type="text/javascript">
+        $("#txtPrice").popover({placement:"right"});
+        $("#txtPrice").popover("show");
+</script>
     <script src="{{asset("/plugin/datetimepicker/js/bootstrap-datetimepicker.js")}}"></script>
     <script src="{{asset("/plugin/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js")}}"></script>
     <script src="{{asset("/js/jquery.form.js")}}"></script>
