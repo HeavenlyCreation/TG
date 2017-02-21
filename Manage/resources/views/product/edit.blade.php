@@ -34,9 +34,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">价格（￥）</label>
+                    <label for="" class="col-sm-2 control-label">价格</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control col-sm-11" id="txtPrice" name="txtPrice" value="{{ $product->Price or "" }}">
+                        <div class="input-group">
+                            <span class="input-group-addon">￥</span>
+                            <input type="text" class="form-control col-sm-11" id="txtPrice" name="txtPrice" value="{{ $product->Price or "" }}"
+                                 aria-label="Amount (to the nearest dollar)">
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -72,40 +76,44 @@
 @stop
 
 @section("footer")
-<script type="text/javascript">
-        $("#txtPrice").popover({placement:"right"});
-        $("#txtPrice").popover("show");
-</script>
     <script src="{{asset("/plugin/datetimepicker/js/bootstrap-datetimepicker.js")}}"></script>
     <script src="{{asset("/plugin/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js")}}"></script>
     <script src="{{asset("/js/jquery.form.js")}}"></script>
     <script type="text/javascript">
-    $('.btn-save').click(function() {
-        // bind 'myForm' and provide a simple callback function
-        $('#myForm').ajaxSubmit({
-            url: '/Product/Edit',
-            type: 'POST',
-            data: {'ProductID': '{{ $product->ProductID }}'},
-            dataType:"json",
-            success: function(data){
-                if(data.status=="success"){
-                    location.href="/Product/List";
-                }else{
-                    alert(data.mess);
-                }
+        function Init(){
+            $("#txtPrice").on("focus",function(){
+                $(this).select();
+            });
+        }
+
+        function vaildForm(){
+            if ($.trim($("#txtPrice").val())=="" 
+                || isNaN($("#txtPrice").val())) {
+                alert("请输入正确价格");
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <script type="text/javascript">
+        Init();
+        $('.btn-save').click(function() {
+            if (vaildForm()) {
+                // bind 'myForm' and provide a simple callback function
+                $('#myForm').ajaxSubmit({
+                    url: '/Product/Edit',
+                    type: 'POST',
+                    data: {'ProductID': '{{ $product->ProductID }}'},
+                    dataType:"json",
+                    success: function(data){
+                        if(data.status=="success"){
+                            location.href="/Product/List";
+                        }else{
+                            alert(data.mess);
+                        }
+                    }
+                });
             }
         });
-    });
-
-//    $('.dtpicker').datetimepicker({
-//        language:  'zh-CN',
-//        weekStart: 1,
-//        todayBtn:  1,
-//        autoclose: 1,
-//        todayHighlight: 1,
-//        startView: 2,
-//        forceParse: 0,
-//        showMeridian: 1
-//    });
     </script>
 @stop
